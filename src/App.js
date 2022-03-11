@@ -41,7 +41,10 @@ class FormInput extends React.Component {
 
   handleChange = (e) => {
     const { target } = e;
-
+    // if (isNaN(target.value) || target.value === "") {
+    //   target.value = -1;
+    // }
+    console.log("value >>", target.value.toString());
     if (target.name === "markup") {
       const markup = roundFloat(target.value);
       const { supplyPrice } = this.state;
@@ -64,17 +67,13 @@ class FormInput extends React.Component {
   };
 
   render() {
-    console.log(
-      calculateMarkupInPercent(this.state.supplyPrice, this.state.retailPrice)
-    );
-
     return (
       <div>
         <h1>Two Way Edit</h1>
         <h2>You changed {this.state.fieldName}</h2>
 
         <div>
-          <label>Product</label>
+          <label>Product </label>
           <span>MacBook pro</span>
         </div>
 
