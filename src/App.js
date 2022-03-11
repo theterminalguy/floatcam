@@ -14,9 +14,23 @@ const calculateMarkupInPercent = (supplyPrice, retailPrice) => {
   return roundFloat(markup);
 };
 
+// markup is express as a percentage
+// supplyPrice is the price of the product
+const calculateRetailPrice = (supplyPrice, markup) => {
+  const supplyPriceFloat = roundFloat(supplyPrice);
+  const markupFloat = roundFloat(markup);
+  // if markup is 0, return supplyPrice
+  // TODO: look at this
+  if (markupFloat === 0) {
+    return supplyPriceFloat;
+  }
+  const increment = (markupFloat / 100) * supplyPriceFloat;
+  return roundFloat(supplyPriceFloat + increment);
+};
+
 class FormInput extends React.Component {
   state = {
-    fieldName: "",
+    fieldName: "", // TODO: remove this
     supplyPrice: this.props.supplyPrice,
     markup: calculateMarkupInPercent(
       this.props.supplyPrice,
@@ -25,35 +39,26 @@ class FormInput extends React.Component {
     retailPrice: this.props.retailPrice,
   };
 
-  calculateRetailPrice = (supplyPrice, markup) => {
-    // if markup is 0, return supplyPrice
-    // TODO: look at this
-    if (markup === 0) {
-      return supplyPrice;
-    }
-    return supplyPrice + (supplyPrice * markup) / 100;
-  };
-
   handleChange = (e) => {
     const { target } = e;
 
     if (target.name === "markup") {
       const markup = roundFloat(target.value);
-      // convert markup to decimal percentage
-      // then get the dollar amount of the markup from the supply price
-      // finally add that to the supply price to get the retail price
-      const retailPrice =
-        (markup / 100) * this.state.supplyPrice + this.state.supplyPrice;
+      const { supplyPrice } = this.state;
+      const retailPrice = calculateRetailPrice(supplyPrice, markup);
       this.setState({
         fieldName: target.name,
-        markup: roundFloat(target.value),
+        markup,
         retailPrice,
       });
     } else {
+      const retailPrice = roundFloat(target.value);
+      const { supplyPrice } = this.state;
+      const markup = calculateMarkupInPercent(supplyPrice, retailPrice);
       this.setState({
         fieldName: target.name,
-        markup: calculateMarkupInPercent(this.state.supplyPrice, target.value),
-        retailPrice: roundFloat(target.value),
+        markup,
+        retailPrice,
       });
     }
   };
