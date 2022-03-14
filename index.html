@@ -3,21 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <title>WebRTC Demo</title>
-	<link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="index.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   </head>
   <body>
     <h1>Hello</h1>
-	
-    <video
-      id="video-player"
-      class="rounded-circle"
-      autoplay
-      playsinline
-    ></video>
-    <button id="open-camera">Open camera</button>
+    <div style="margin-bottom: 20px">
+      <button id="open-camera">Open camera</button>
+    </div>
+
+    <div id="mydiv">
+      <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+      <div id="mydivheader">Click here to move</div>
+      <video
+        id="video-player"
+        class="rounded-circle"
+        autoplay
+        playsinline
+      ></video>
+    </div>
     <div id="error-message"></div>
 
     <script src="index.js"></script>
+    <script src="drag.js"></script>
   </body>
 </html>
