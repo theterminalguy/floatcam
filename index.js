@@ -56,4 +56,21 @@ async function init(e) {
   }
 }
 
-document.querySelector("#open-camera").addEventListener("click", (e) => init(e));
+document
+  .querySelector("#open-camera")
+  .addEventListener("click", (e) => init(e));
+
+function adjustVideoSize(size) {
+  // if camera is not open, do nothing
+  if (window.stream === undefined) {
+    console.log("camera is not open");
+    return;
+  }
+  document.querySelector("#video-player").style.width = size;
+  document.querySelector("#video-player").style.height = size;
+}
+
+function setResolution(_e) {
+  const size = document.querySelector("#resolution").value;
+  adjustVideoSize(size);
+}
