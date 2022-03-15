@@ -1,10 +1,3 @@
-/*
- *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
- *
- *  Use of this source code is governed by a BSD-style license
- *  that can be found in the LICENSE file in the root of the source
- *  tree.
- */
 "use strict";
 
 // Put variables in global scope to make them available to the browser console.
@@ -71,6 +64,17 @@ function adjustVideoSize(size) {
 }
 
 function setResolution(_e) {
-  const size = document.querySelector("#resolution").value;
+  const size = document.querySelector("#resolutions").value;
   adjustVideoSize(size);
+}
+
+function setShape(_e) {
+  const shape = document.querySelector("#shapes").value;
+  if (shape === "rectangle") {
+    document.querySelector("#primary-sizes").style.display = "none";
+    document.querySelector("#secondary-sizes").style.display = "block";
+  } else {
+    document.querySelector("#primary-sizes").style.display = "block";
+    document.querySelector("#secondary-sizes").style.display = "none";
+  }
 }
