@@ -53,22 +53,47 @@ document
   .querySelector("#open-camera")
   .addEventListener("click", (e) => init(e));
 
-function adjustVideoSize(size) {
+function isCameraOpen() {
+  return window.stream !== undefined;
+}
+
+function adjustVideoSize(width, height) {
   // if camera is not open, do nothing
-  if (window.stream === undefined) {
+  if (!isCameraOpen()) {
+    // TODO: show error message
     console.log("camera is not open");
     return;
   }
-  document.querySelector("#video-player").style.width = size;
-  document.querySelector("#video-player").style.height = size;
+  document.querySelector("#video-player").style.width = width;
+  document.querySelector("#video-player").style.height = height;
 }
 
 function setResolution(_e) {
-  const size = document.querySelector("#resolutions").value;
-  adjustVideoSize(size);
+  const shape = document.querySelector("#shapes").value;
+  if (shape === "rectangle") {
+    const size = document.querySelector("#rect-resolutions").value;
+    // remove border radius from video player
+    document.querySelector("#video-player").style.borderRadius = "0px";
+    const [width, height] = size.split("|");
+    console.log(width, height);
+    adjustVideoSize(width, height);
+  } else {
+    const size = document.querySelector("#resolutions").value;
+    adjustVideoSize(size, size);
+  }
 }
 
 function setShape(_e) {
+  if (!isCameraOpen()) {
+    // TODO: show error message
+    console.log("camera is not open");
+    return;
+  }
+  toggleSizeSelectOption();
+  setResolution(null);
+}
+
+function toggleSizeSelectOption() {
   const shape = document.querySelector("#shapes").value;
   if (shape === "rectangle") {
     document.querySelector("#primary-sizes").style.display = "none";
