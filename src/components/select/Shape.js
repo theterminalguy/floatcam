@@ -24,7 +24,7 @@ function Shape() {
         <Form.Label>Shape</Form.Label>
         <Form.Control as="select">
           {shapes.map((shape) => (
-            <option key={shape.value}>{shape.label}</option>
+            <option key={shape.value} value={shape.value}>{shape.label}</option>
           ))}
         </Form.Control>
       </Form.Group>

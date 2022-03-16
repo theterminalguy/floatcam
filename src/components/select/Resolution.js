@@ -40,7 +40,7 @@ function Resolution() {
         <Form.Label>Resolution</Form.Label>
         <Form.Control as="select">
           {resolutions.map((resolution) => (
-            <option key={resolution.value}>{resolution.label}</option>
+            <option key={resolution.value} value={resolution.value}>{resolution.label}</option>
           ))}
         </Form.Control>
       </Form.Group>

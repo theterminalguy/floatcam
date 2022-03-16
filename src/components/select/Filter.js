@@ -55,7 +55,7 @@ function Filter() {
         <Form.Label>Filter</Form.Label>
         <Form.Control as="select">
           {filters.map((filter) => (
-            <option key={filter.value}>{filter.label}</option>
+            <option key={filter.value} value={filter.value}>{filter.label}</option>
           ))}
         </Form.Control>
       </Form.Group>
