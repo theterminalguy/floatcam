@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 
 function Camera() {
   return (
-    <Card.Text>
+    <Card.Text as="div">
       <Form.Group controlId="formCameraSource">
         <Form.Label>Camera</Form.Label>
         <Form.Control as="select">

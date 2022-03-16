@@ -35,7 +35,7 @@ function Resolution() {
   ];
 
   return (
-    <Card.Text>
+    <Card.Text as="div">
       <Form.Group controlId="formVideoResolution">
         <Form.Label>Resolution</Form.Label>
         <Form.Control as="select">

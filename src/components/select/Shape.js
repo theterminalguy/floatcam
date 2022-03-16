@@ -19,7 +19,7 @@ function Shape() {
   ];
 
   return (
-    <Card.Text>
+    <Card.Text as="div">
       <Form.Group controlId="formVideoShape">
         <Form.Label>Shape</Form.Label>
         <Form.Control as="select">

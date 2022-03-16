@@ -50,7 +50,7 @@ function Filter() {
     },
   ];
   return (
-    <Card.Text>
+    <Card.Text as="div">
       <Form.Group controlId="formVideoFilter">
         <Form.Label>Filter</Form.Label>
         <Form.Control as="select">

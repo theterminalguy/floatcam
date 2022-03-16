@@ -20,7 +20,7 @@ function CamSection() {
           <SelectShape />
           <SelectFilter />
 
-          <Card.Text>
+          <Card.Text as="div">
             <Form.Group controlId="formFlipVideo">
               <label>
                 <Form.Label>Flip</Form.Label>
