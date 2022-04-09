@@ -99,15 +99,21 @@ function CamSection() {
     setSelectedShape(shape);
     switch (shape) {
       case "circle":
-        video.style.borderRadius = "50%";
         setResolutionOptions(defaultResolutionOptions);
+        video.style.borderRadius = "50%";
+        video.style.width = "100px";
+        video.style.height = "100px";
         break;
       case "square":
-        video.style.borderRadius = "0";
         setResolutionOptions(defaultResolutionOptions);
+        video.style.borderRadius = "0";
+        video.style.width = "100px";
+        video.style.height = "100px";
         break;
       case "rectangle":
         setResolutionOptions(rectangleResolutionOptions);
+        video.style.width = "250px";
+        video.style.height = "100px";
         video.style.borderRadius = "0";
         break;
       default:
