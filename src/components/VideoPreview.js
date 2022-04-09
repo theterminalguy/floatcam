@@ -6,7 +6,6 @@ function VideoPreview({videoRef}) {
       <div id="preview-header">Click here to move</div>
       <video
         id="video-player"
-        className="rounded-circle"
         autoPlay={true}
         playsInline={true}
         ref={videoRef}
