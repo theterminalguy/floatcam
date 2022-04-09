@@ -38,11 +38,16 @@ function BorderStyle() {
     },
   ];
 
+  const handleChange = (event) => {
+    const video = document.getElementById("video-player");
+    video.style.borderStyle = event.target.value;
+  };
+
   return (
     <Card.Text as="div">
       <Form.Group controlId="formVideoBorderStyle">
         <Form.Label>Style</Form.Label>
-        <Form.Control as="select">
+        <Form.Control as="select" onChange={handleChange}>
           {borderStyles.map((borderStyle) => (
             <option key={borderStyle.value} value={borderStyle.value}>
               {borderStyle.label}
