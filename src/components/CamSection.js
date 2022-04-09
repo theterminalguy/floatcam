@@ -121,6 +121,17 @@ function CamSection() {
     }
   };
 
+  const handleMirrorChange = (e) => {
+    const video = document.getElementById("video-player");
+    const mirror = e.target.checked;
+    if (mirror) {
+      video.style.transform = "scaleX(-1)";
+      video.style.transform = "-webkit-scaleX(-1)";
+    } else {
+      video.style.transform = "scaleX(1)";
+    }
+  };
+
   return (
     <Container className="p-3">
       <Card>
@@ -143,7 +154,11 @@ function CamSection() {
             <Form.Group controlId="formFlipVideo">
               <label>
                 <Form.Label>Flip</Form.Label>
-                <Form.Check type="checkbox" label="Mirror Recording" />
+                <Form.Check
+                  type="checkbox"
+                  label="Mirror Recording"
+                  onChange={handleMirrorChange}
+                />
               </label>
             </Form.Group>
           </Card.Text>
