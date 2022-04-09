@@ -83,6 +83,12 @@ function CamSection() {
   const handleResolutionChange = (e) => {
     const video = document.getElementById("video-player");
     const size = e.target.value;
+    if (selectedShape === "rectangle") {
+      const [width, height] = size.split("|");
+      video.style.width = width;
+      video.style.height = height;
+      return;
+    }
     video.style.width = size;
     video.style.height = size;
   };
@@ -90,12 +96,15 @@ function CamSection() {
   const handleShapeChange = (e) => {
     const video = document.getElementById("video-player");
     const shape = e.target.value;
+    setSelectedShape(shape);
     switch (shape) {
       case "circle":
         video.style.borderRadius = "50%";
+        setResolutionOptions(defaultResolutionOptions);
         break;
       case "square":
         video.style.borderRadius = "0";
+        setResolutionOptions(defaultResolutionOptions);
         break;
       case "rectangle":
         setResolutionOptions(rectangleResolutionOptions);
@@ -104,7 +113,6 @@ function CamSection() {
       default:
         break;
     }
-    setSelectedShape(shape);
   };
 
   return (
