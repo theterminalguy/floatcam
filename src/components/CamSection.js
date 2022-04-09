@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 
 import SelectResolution from "./select/Resolution";
-import SelectCamera from "./select/Camera";
+import SelectCamera from "./Camera";
 import SelectShape from "./select/Shape";
 import SelectFilter from "./select/Filter";
 

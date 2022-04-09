@@ -1,6 +1,6 @@
 import React from "react";
 
-function Preview() {
+function VideoPreview({videoRef}) {
   return (
     <div id="preview">
       <div id="preview-header">Click here to move</div>
@@ -9,9 +9,10 @@ function Preview() {
         className="rounded-circle"
         autoPlay={true}
         playsInline={true}
+        ref={videoRef}
       ></video>
     </div>
   );
 }
 
-export default Preview;
+export default VideoPreview;

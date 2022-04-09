@@ -1,12 +1,12 @@
 #preview {
-  position: absolute;
+  position: fixed;
   z-index: 9;
   background-color: #f1f1f1;
   border: 1px solid #d3d3d3;
   text-align: center;
   height: 400px;
   width: 400px;
-  top: 25px;
+  bottom: 25px;
   right: 25px;
 }
 
@@ -16,4 +16,14 @@
   z-index: 10;
   background-color: #2196f3;
   color: #fff;
+}
+
+#video-player {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  margin-top: 25%;
 }

@@ -34,13 +34,22 @@ function Resolution() {
     },
   ];
 
+  const handleOnChange = (e) => {
+    const video = document.getElementById("video-player");
+    const size = e.target.value;
+    video.style.width = size;
+    video.style.height = size;
+  };
+
   return (
     <Card.Text as="div">
       <Form.Group controlId="formVideoResolution">
         <Form.Label>Resolution</Form.Label>
-        <Form.Control as="select">
+        <Form.Control as="select" onChange={handleOnChange}>
           {resolutions.map((resolution) => (
-            <option key={resolution.value} value={resolution.value}>{resolution.label}</option>
+            <option key={resolution.value} value={resolution.value}>
+              {resolution.label}
+            </option>
           ))}
         </Form.Control>
       </Form.Group>

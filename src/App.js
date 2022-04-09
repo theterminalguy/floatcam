@@ -5,7 +5,6 @@ import "./App.css";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 
-import Preview from "./components/Preview";
 import CamSection from "./components/CamSection";
 import BorderSection from "./components/BorderSection";
 
@@ -21,7 +20,6 @@ function SettingsScreen() {
 function App() {
   return (
     <Container className="p-3">
-      <Preview />
       <Container className="p-5 mb-4 bg-light rounded-3">
         <h1 className="header">FloatCam v0.01</h1>
         <sup>
