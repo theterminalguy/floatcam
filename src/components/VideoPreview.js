@@ -1,6 +1,6 @@
 import React from "react";
 
-function VideoPreview({videoRef}) {
+function VideoPreview({ videoRef }) {
   return (
     <div id="preview">
       <div id="preview-header">Click here to move</div>
@@ -9,6 +9,10 @@ function VideoPreview({videoRef}) {
         autoPlay={true}
         playsInline={true}
         ref={videoRef}
+        style={{
+          borderWidth: "0px",
+          borderStyle: "solid",
+        }}
       ></video>
     </div>
   );
