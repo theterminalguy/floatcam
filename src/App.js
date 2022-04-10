@@ -19,11 +19,34 @@ function SettingsScreen() {
   );
 }
 
+function BuyMeACoffee() {
+  return (
+    <a
+      href="https://www.buymeacoffee.com/theterminalguy"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ float: "right" }}
+    >
+      <img
+        src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+        alt="Buy Me A Coffee"
+        style={{ width: "150px" }}
+      />
+    </a>
+  );
+}
+
 function App() {
   return (
     <Container className="p-3">
       <Container className="p-5 mb-4 bg-light rounded-3">
-        <h1 className="header">floatcam 📸</h1>
+        <BuyMeACoffee />
+        <h1 className="header">
+          floatcam{" "}
+          <span role="img" arial-label="camera-with-flash">
+            📸
+          </span>
+        </h1>
         <sup>
           Made with{" "}
           <span role="img" aria-label="heart">
