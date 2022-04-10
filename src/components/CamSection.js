@@ -6,7 +6,6 @@ import Card from "react-bootstrap/Card";
 import SelectResolution from "./select/Resolution";
 import SelectCamera from "./Camera";
 import SelectShape from "./select/Shape";
-import SelectFilter from "./select/Filter";
 
 const defaultResolutionOptions = [
   {
@@ -126,9 +125,10 @@ function CamSection() {
     const mirror = e.target.checked;
     if (mirror) {
       video.style.transform = "scaleX(-1)";
-      video.style.transform = "-webkit-scaleX(-1)";
+      video.style["-webkit-transform"] = "-webkit-scaleX(-1)";
     } else {
       video.style.transform = "scaleX(1)";
+      video.style["-webkit-transform"] = "scaleX(1)";
     }
   };
 
@@ -148,8 +148,6 @@ function CamSection() {
             defaultShape={selectedShape}
             onChange={handleShapeChange}
           />
-          <SelectFilter />
-
           <Card.Text as="div">
             <Form.Group controlId="formFlipVideo">
               <label>
@@ -169,9 +167,3 @@ function CamSection() {
 }
 
 export default CamSection;
-/**
- * video {
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
- */

@@ -7,12 +7,14 @@ import Form from "react-bootstrap/Form";
 
 import CamSection from "./components/CamSection";
 import BorderSection from "./components/BorderSection";
+import EffectsSection from "./components/EffectsSection";
 
 function SettingsScreen() {
   return (
     <Form>
       <CamSection />
       <BorderSection />
+      <EffectsSection />
     </Form>
   );
 }

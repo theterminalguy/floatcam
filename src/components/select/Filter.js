@@ -9,53 +9,71 @@ function Filter() {
       label: "None",
     },
     {
-      value: "blur",
-      label: "Blur",
+      value: "blur(3px)",
+      label: "Blurry",
     },
     {
-      value: "grayscale",
-      label: "Grayscale",
+      value: "brightness(1.3)",
+      label: "Bright",
     },
     {
-      value: "sepia",
-      label: "Sepia",
+      value: "brightness(2.3)",
+      label: "Brighter",
     },
     {
-      value: "invert",
-      label: "Invert",
+      value: "contrast(150%)",
+      label: "Pop",
     },
     {
-      value: "sketch",
-      label: "Sketch",
+      value: "grayscale(100%)",
+      label: "No Color",
     },
     {
-      value: "emboss",
-      label: "Emboss",
+      value: "hue-rotate(180deg)",
+      label: "Mystique",
     },
     {
-      value: "posterize",
-      label: "Posterize",
+      value: "invert(100%)",
+      label: "Ghost",
     },
     {
-      value: "toon",
-      label: "Toon",
+      value: "opacity(50%)",
+      label: "Transparent",
     },
     {
-      value: "pixelate",
-      label: "Pixelate",
+      value: "saturate(7)",
+      label: "Mars",
     },
     {
-      value: "vignette",
-      label: "Vignette",
+      value: "sepia(100%)",
+      label: "Mexico",
+    },
+    {
+      value: "drop-shadow(8px 8px 10px %s)",
+      label: "Shadow",
     },
   ];
+
+  const handleChange = (e) => {
+    const video = document.getElementById("video-player");
+    let filter = e.target.value;
+    if (filter === "drop-shadow(8px 8px 10px %s)") {
+      const videoBorderColor =
+        document.getElementById("video-border-color").value;
+      filter = `drop-shadow(8px 8px 10px ${videoBorderColor})`;
+    }
+    video.style.filter = filter;
+    video.style["-webkit-filter"] = `-webkit-${filter}`;
+  };
   return (
     <Card.Text as="div">
       <Form.Group controlId="formVideoFilter">
         <Form.Label>Filter</Form.Label>
-        <Form.Control as="select">
+        <Form.Control as="select" onChange={handleChange}>
           {filters.map((filter) => (
-            <option key={filter.value} value={filter.value}>{filter.label}</option>
+            <option key={filter.value} value={filter.value}>
+              {filter.label}
+            </option>
           ))}
         </Form.Control>
       </Form.Group>
