@@ -23,17 +23,18 @@ function App() {
   return (
     <Container className="p-3">
       <Container className="p-5 mb-4 bg-light rounded-3">
-        <h1 className="header">FloatCam v0.01</h1>
+        <h1 className="header">floatcam</h1>
         <sup>
-          Developed by <a href="#">@theterminalguy</a>
+          Made with{" "}
+          <span role="img" aria-label="heart">
+            ❤️
+          </span>{" "}
+          in Canada{" "}
+          <span role="img" aria-label="flag">
+            🇨🇦
+          </span>{" "}
+          <span className="text-muted">by @theterminalguy</span>
         </sup>
-        <p className="subheader">
-          Easily layer your webcam video on top of your screen recorder.{" "}
-          <span>
-            <a href="https://github.com/theterminalguy">Buy me coffee</a>
-          </span>
-        </p>
-
         <SettingsScreen />
       </Container>
     </Container>
