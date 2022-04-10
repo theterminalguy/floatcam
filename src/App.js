@@ -59,6 +59,7 @@ function App() {
           <span className="text-muted">by @theterminalguy</span>
         </sup>
         <SettingsScreen />
+        <sub>v0.1.0</sub>
       </Container>
     </Container>
   );
