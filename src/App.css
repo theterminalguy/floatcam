@@ -14,7 +14,6 @@ body {
 }
 
 .circles {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -144,7 +143,7 @@ body {
   padding: 10px;
   cursor: move;
   z-index: 10;
-  background-color: #2196f3;
+  background-color: #4e54c8;;
   color: #fff;
 }
 
@@ -156,4 +155,8 @@ body {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   margin-top: 25%;
+}
+
+.card-text {
+  margin-bottom: 10px !important;
 }

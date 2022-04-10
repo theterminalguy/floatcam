@@ -28,11 +28,19 @@ const Camera = () => {
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then((stream) => {
-        console.log("getUserMedia() got stream: ", stream);
         let video = videoRef.current;
         video.srcObject = stream;
-        video.play();
-        setUserApproved(true);
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setErrorOccurred(false);
+              setUserApproved(true);
+            })
+            .catch((_error) => {
+              setErrorOccurred(true);
+            });
+        }
       })
       .catch((error) => {
         console.log("navigator.getUserMedia error: ", error);
@@ -44,7 +52,6 @@ const Camera = () => {
     getWebcams(userApproved);
   }, [userApproved]);
 
-  console.log("webcams", webcams);
   return (
     <div>
       {errorOccurred ? (

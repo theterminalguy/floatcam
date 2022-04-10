@@ -20,7 +20,7 @@ function BorderSection() {
           <SelectBorderStyle />
 
           <Card.Text as="div">
-            <Form.Group controlId="formVideoBorderColor">
+            <Form.Group>
               <Form.Label>Color</Form.Label>
               <Form.Control
                 type="color"
