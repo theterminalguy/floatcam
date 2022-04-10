@@ -13,22 +13,33 @@ const Camera = () => {
     { deviceId: "loading", label: "Loading..." },
   ]);
 
-  const getWebcams = (streaming) => {
-    navigator.mediaDevices.enumerateDevices().then(function (devices) {
-      const webcamList = devices.filter(function (device) {
-        return device.kind === "videoinput";
-      });
-      if (streaming) {
-        setWebcams(webcamList);
-      }
-    });
+  const [videoStream, setVideoStream] = useState(null);
+
+  const handleError = (error) => {
+    setErrorOccurred(true);
+    console.log("navigator.getUserMedia error: ", error);
   };
 
-  const askForPermission = () => {
+  const getWebcams = (streaming) => {
     navigator.mediaDevices
-      .getUserMedia({ video: true })
+      .enumerateDevices()
+      .then(function (devices) {
+        const webcamList = devices.filter(function (device) {
+          return device.kind === "videoinput";
+        });
+        if (streaming) {
+          setWebcams(webcamList);
+        }
+      })
+      .catch(handleError);
+  };
+
+  const askForPermission = (constraints) => {
+    navigator.mediaDevices
+      .getUserMedia(constraints)
       .then((stream) => {
         let video = videoRef.current;
+        setVideoStream(stream);
         video.srcObject = stream;
         const playPromise = video.play();
         if (playPromise !== undefined) {
@@ -37,20 +48,32 @@ const Camera = () => {
               setErrorOccurred(false);
               setUserApproved(true);
             })
-            .catch((_error) => {
-              setErrorOccurred(true);
-            });
+            .catch(handleError);
         }
       })
-      .catch((error) => {
-        console.log("navigator.getUserMedia error: ", error);
-      });
+      .catch(handleError);
   };
 
   useEffect(() => {
-    askForPermission();
+    askForPermission({ video: true });
     getWebcams(userApproved);
   }, [userApproved]);
+
+  const handleChange = (event) => {
+    if (videoStream) {
+      videoStream.getTracks().forEach((track) => {
+        track.stop();
+      });
+    }
+    const videoSource = event.target.value;
+    const constraints = {
+      video: { deviceId: videoSource },
+    };
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then(() => askForPermission(constraints))
+      .catch(handleError);
+  };
 
   return (
     <div>
@@ -80,7 +103,7 @@ const Camera = () => {
       <Card.Text as="div">
         <Form.Group controlId="formCameraSource">
           <Form.Label>Camera</Form.Label>
-          <Form.Control as="select">
+          <Form.Control as="select" onChange={handleChange}>
             {webcams.map((webcam) => (
               <option key={webcam.deviceId} value={webcam.deviceId}>
                 {webcam.label}
