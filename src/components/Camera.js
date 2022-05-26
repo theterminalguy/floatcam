@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Alert from "react-bootstrap/Alert";
-import VideoPreview from "./VideoPreview";
+//import VideoPreview from "./VideoPreview";
 
 const Camera = () => {
   const videoRef = useRef(null);
@@ -99,7 +99,7 @@ const Camera = () => {
         </Alert>
       ) : null}
 
-      <VideoPreview videoRef={videoRef} />
+      {/* <VideoPreview videoRef={videoRef} /> */}
       <Card.Text as="div">
         <Form.Group controlId="formCameraSource">
           <Form.Label>Camera</Form.Label>
