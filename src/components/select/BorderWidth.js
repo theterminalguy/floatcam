@@ -25,7 +25,6 @@ function BorderWidth() {
   ];
 
   const handleChange = (event) => {
-    const video = document.getElementById("video-player");
     electronAPI.sendSync("shared-window-channel", {
       type: "set-border-width",
       payload: event.target.value,

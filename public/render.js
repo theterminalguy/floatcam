@@ -24,12 +24,17 @@ function handleSetBorderStyle(data) {
   video.style.borderStyle = data;
 }
 
+function handleSetBorderColor(data) {
+  video.style.borderColor = data;
+}
+
 const eventHandlers = {
   "set-camera-resolution": handleSetCameraResolution,
   "set-camera-shape": handleSetCameraShape,
   "set-camera-mirror": handleSetCameraMirror,
   "set-border-width": handleSetBorderWidth,
   "set-border-style": handleSetBorderStyle,
+  "set-border-color": handleSetBorderColor,
 };
 
 window.addEventListener("DOMContentLoaded", function () {
