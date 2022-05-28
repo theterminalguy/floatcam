@@ -17,8 +17,8 @@ function createMainWindow() {
 function createCameraWindow(parentWindow) {
   const win = new BrowserWindow({
     parent: parentWindow,
-    width: 400,
-    height: 400,
+    width: 500,
+    height: 500,
     // resizable: false,
     webPreferences: {
       preload: __dirname + "/preload.js",
@@ -34,7 +34,6 @@ app.whenReady().then(() => {
   const camWindow = createCameraWindow(mainWindow);
 
   ipcMain.on("shared-window-channel", (event, arg) => {
-    console.log("arg", arg);
     camWindow.webContents.send("shared-window-channel", arg);
     event.returnValue = true;
   });

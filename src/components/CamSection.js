@@ -94,31 +94,35 @@ function CamSection() {
   };
 
   const handleShapeChange = (e) => {
-    const video = document.getElementById("video-player");
     const shape = e.target.value;
+    const style = {};
     setSelectedShape(shape);
     switch (shape) {
       case "circle":
         setResolutionOptions(defaultResolutionOptions);
-        video.style.borderRadius = "50%";
-        video.style.width = "100px";
-        video.style.height = "100px";
+        style.borderRadius = "50%";
+        style.width = "100px";
+        style.height = "100px";
         break;
       case "square":
         setResolutionOptions(defaultResolutionOptions);
-        video.style.borderRadius = "0";
-        video.style.width = "100px";
-        video.style.height = "100px";
+        style.borderRadius = "0";
+        style.width = "100px";
+        style.height = "100px";
         break;
       case "rectangle":
         setResolutionOptions(rectangleResolutionOptions);
-        video.style.width = "250px";
-        video.style.height = "100px";
-        video.style.borderRadius = "0";
+        style.width = "250px";
+        style.height = "100px";
+        style.borderRadius = "0";
         break;
       default:
         break;
     }
+    electronAPI.sendSync("shared-window-channel", {
+      type: "set-camera-shape",
+      payload: style,
+    });
   };
 
   const handleMirrorChange = (e) => {

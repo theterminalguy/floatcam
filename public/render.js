@@ -4,8 +4,16 @@ function handleSetCameraResolution(data) {
   video.style.height = data.height;
 }
 
+function handleSetCameraShape(data) {
+  const video = document.getElementById("video-player");
+  video.style.borderRadius = data.borderRadius;
+  video.style.width = data.width;
+  video.style.height = data.height;
+}
+
 const eventHandlers = {
   "set-camera-resolution": handleSetCameraResolution,
+  "set-camera-shape": handleSetCameraShape,
 };
 
 window.addEventListener("DOMContentLoaded", function () {
