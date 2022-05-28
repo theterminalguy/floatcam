@@ -1,19 +1,25 @@
+const video = document.getElementById("video-player");
+
 function handleSetCameraResolution(data) {
-  const video = document.getElementById("video-player");
   video.style.width = data.width;
   video.style.height = data.height;
 }
 
 function handleSetCameraShape(data) {
-  const video = document.getElementById("video-player");
   video.style.borderRadius = data.borderRadius;
   video.style.width = data.width;
   video.style.height = data.height;
 }
 
+function handleSetCameraMirror(data) {
+  video.style.transform = data.transform;
+  video.style["-webkit-transform"] = data["-webkit-transform"];
+}
+
 const eventHandlers = {
   "set-camera-resolution": handleSetCameraResolution,
   "set-camera-shape": handleSetCameraShape,
+  "set-camera-mirror": handleSetCameraMirror,
 };
 
 window.addEventListener("DOMContentLoaded", function () {

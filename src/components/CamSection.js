@@ -126,15 +126,19 @@ function CamSection() {
   };
 
   const handleMirrorChange = (e) => {
-    const video = document.getElementById("video-player");
     const mirror = e.target.checked;
+    const style = {};
     if (mirror) {
-      video.style.transform = "scaleX(-1)";
-      video.style["-webkit-transform"] = "-webkit-scaleX(-1)";
+      style.transform = "scaleX(-1)";
+      style["-webkit-transform"] = "-webkit-scaleX(-1)";
     } else {
-      video.style.transform = "scaleX(1)";
-      video.style["-webkit-transform"] = "scaleX(1)";
+      style.transform = "scaleX(1)";
+      style["-webkit-transform"] = "scaleX(1)";
     }
+    electronAPI.sendSync("shared-window-channel", {
+      type: "set-camera-mirror",
+      payload: style,
+    });
   };
 
   return (

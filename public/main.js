@@ -19,7 +19,7 @@ function createCameraWindow(parentWindow) {
     parent: parentWindow,
     width: 500,
     height: 500,
-    // resizable: false,
+    resizable: false,
     webPreferences: {
       preload: __dirname + "/preload.js",
     },
