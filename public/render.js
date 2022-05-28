@@ -11,4 +11,11 @@ window.addEventListener("DOMContentLoaded", function () {
     .catch(function (err) {
       console.log(err.name + ": " + err.message);
     });
+
+  window.electronAPI.onMessageReceived(
+    "set-camera-resolution",
+    function (_, message) {
+      console.log("message", message);
+    }
+  );
 });

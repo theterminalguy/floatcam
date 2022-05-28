@@ -20,6 +20,9 @@ function createCameraWindow(parentWindow) {
     width: 400,
     height: 400,
     resizable: false,
+    webPreferences: {
+      preload: __dirname + "/preload.js",
+    },
   });
   win.loadFile("public/cam.html"); // paint window with html
   win.webContents.openDevTools(); // open devtools
@@ -28,11 +31,12 @@ function createCameraWindow(parentWindow) {
 
 app.whenReady().then(() => {
   const mainWindow = createMainWindow();
-  createCameraWindow(mainWindow);
+  const camWindow = createCameraWindow(mainWindow);
 
   ipcMain.on("set-camera-resolution", (event, arg) => {
     console.log("arg", arg);
-    event.returnValue = "pong";
+    camWindow.webContents.send("set-camera-resolution", arg);
+    event.returnValue = true;
   });
 
   app.on("activate", () => {
