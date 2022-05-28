@@ -1,3 +1,13 @@
+function handleSetCameraResolution(data) {
+  const video = document.getElementById("video-player");
+  video.style.width = data.width;
+  video.style.height = data.height;
+}
+
+const eventHandlers = {
+  "set-camera-resolution": handleSetCameraResolution,
+};
+
 window.addEventListener("DOMContentLoaded", function () {
   navigator.mediaDevices
     .getUserMedia({ video: true })
@@ -15,7 +25,10 @@ window.addEventListener("DOMContentLoaded", function () {
   window.electronAPI.onMessageReceived(
     "shared-window-channel",
     function (_, message) {
-      console.log("message", message);
+      const handler = eventHandlers[message.type];
+      if (handler) {
+        handler(message.payload);
+      }
     }
   );
 });
