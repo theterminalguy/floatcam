@@ -2,6 +2,8 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 
+const { electronAPI } = window;
+
 function BorderWidth() {
   const borderWidths = [
     {
@@ -24,7 +26,10 @@ function BorderWidth() {
 
   const handleChange = (event) => {
     const video = document.getElementById("video-player");
-    video.style.borderWidth = event.target.value;
+    electronAPI.sendSync("shared-window-channel", {
+      type: "set-border-width",
+      payload: event.target.value,
+    });
   };
 
   return (

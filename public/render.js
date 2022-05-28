@@ -16,10 +16,20 @@ function handleSetCameraMirror(data) {
   video.style["-webkit-transform"] = data["-webkit-transform"];
 }
 
+function handleSetBorderWidth(data) {
+  video.style.borderWidth = data;
+}
+
+function handleSetBorderStyle(data) {
+  video.style.borderStyle = data;
+}
+
 const eventHandlers = {
   "set-camera-resolution": handleSetCameraResolution,
   "set-camera-shape": handleSetCameraShape,
   "set-camera-mirror": handleSetCameraMirror,
+  "set-border-width": handleSetBorderWidth,
+  "set-border-style": handleSetBorderStyle,
 };
 
 window.addEventListener("DOMContentLoaded", function () {

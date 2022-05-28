@@ -2,6 +2,8 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 
+const { electronAPI } = window;
+
 function BorderStyle() {
   const borderStyles = [
     {
@@ -40,7 +42,10 @@ function BorderStyle() {
 
   const handleChange = (event) => {
     const video = document.getElementById("video-player");
-    video.style.borderStyle = event.target.value;
+    electronAPI.sendSync("shared-window-channel", {
+      type: "set-border-style",
+      payload: event.target.value,
+    });
   };
 
   return (
