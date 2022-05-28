@@ -71,6 +71,7 @@ function Filter() {
       payload: style,
     });
   };
+
   return (
     <Card.Text as="div">
       <Form.Group controlId="formVideoFilter">
