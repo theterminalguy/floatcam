@@ -7,6 +7,8 @@ import SelectResolution from "./select/Resolution";
 import SelectCamera from "./Camera";
 import SelectShape from "./select/Shape";
 
+const { electronAPI } = window;
+
 const defaultResolutionOptions = [
   {
     value: "100px",
@@ -85,7 +87,7 @@ function CamSection() {
     if (selectedShape === "rectangle") {
       [width, height] = size.split("|");
     }
-    window.electronAPI.sendAsync("set-camera-resolution", { width, height });
+    electronAPI.sendAsync("set-camera-resolution", { width, height });
   };
 
   const handleShapeChange = (e) => {
