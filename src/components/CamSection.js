@@ -80,16 +80,12 @@ function CamSection() {
   const [selectedShape, setSelectedShape] = useState("circle");
 
   const handleResolutionChange = (e) => {
-    const video = document.getElementById("video-player");
     const size = e.target.value;
+    let [width, height] = [size, size];
     if (selectedShape === "rectangle") {
-      const [width, height] = size.split("|");
-      video.style.width = width;
-      video.style.height = height;
-      return;
+      [width, height] = size.split("|");
     }
-    video.style.width = size;
-    video.style.height = size;
+    window.electronAPI.sendAsync("set-camera-resolution", { width, height });
   };
 
   const handleShapeChange = (e) => {

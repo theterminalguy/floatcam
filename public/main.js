@@ -30,6 +30,11 @@ app.whenReady().then(() => {
   const mainWindow = createMainWindow();
   createCameraWindow(mainWindow);
 
+  ipcMain.on("set-camera-resolution", (event, arg) => {
+    console.log("arg", arg);
+    event.returnValue = "pong";
+  });
+
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });

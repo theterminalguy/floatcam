@@ -4,12 +4,17 @@
     <meta charset="UTF-8" />
     <title>Float Cam</title>
   </head>
-  <body>
+  <body style="-webkit-app-region: drag">
     <video
       id="video-player"
       autoplay=""
       playsinline=""
-      style="border-width: 0px; border-style: solid; width: 100%; height: 100%"
+      style="
+        border: 2px solid orange;
+        border-style: solid;
+        width: 100%;
+        height: 100%;
+      "
     ></video>
 
     <script src="render.js"></script>
