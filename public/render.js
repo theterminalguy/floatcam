@@ -1,31 +1,46 @@
-const video = document.getElementById("video-player");
+const videoPlayer = document.getElementById("video-player");
 
 function handleSetCameraResolution(data) {
-  video.style.width = data.width;
-  video.style.height = data.height;
+  videoPlayer.style.width = data.width;
+  videoPlayer.style.height = data.height;
 }
 
 function handleSetCameraShape(data) {
-  video.style.borderRadius = data.borderRadius;
-  video.style.width = data.width;
-  video.style.height = data.height;
+  videoPlayer.style.borderRadius = data.borderRadius;
+  videoPlayer.style.width = data.width;
+  videoPlayer.style.height = data.height;
 }
 
 function handleSetCameraMirror(data) {
-  video.style.transform = data.transform;
-  video.style["-webkit-transform"] = data["-webkit-transform"];
+  videoPlayer.style.transform = data.transform;
+  videoPlayer.style["-webkit-transform"] = data["-webkit-transform"];
 }
 
 function handleSetBorderWidth(data) {
-  video.style.borderWidth = data;
+  videoPlayer.style.borderWidth = data;
 }
 
 function handleSetBorderStyle(data) {
-  video.style.borderStyle = data;
+  videoPlayer.style.borderStyle = data;
 }
 
 function handleSetBorderColor(data) {
-  video.style.borderColor = data;
+  videoPlayer.style.borderColor = data;
+}
+
+function handleSetVideoStream(data) {
+  const stream = window.videoStream;
+  if (stream) {
+    console.log("stopping track");
+    stream.getTracks().forEach((track) => track.stop());
+  }
+  console.log("data", data);
+  renderCamera(data);
+}
+
+function handleSetVideoFilter(data) {
+  videoPlayer.style.filter = data.filter;
+  videoPlayer.style["-webkit-filter"] = `-webkit-${data.filter}`;
 }
 
 const eventHandlers = {
@@ -35,25 +50,30 @@ const eventHandlers = {
   "set-border-width": handleSetBorderWidth,
   "set-border-style": handleSetBorderStyle,
   "set-border-color": handleSetBorderColor,
+  "set-video-stream": handleSetVideoStream,
+  "set-video-filter": handleSetVideoFilter,
 };
 
-window.addEventListener("DOMContentLoaded", function () {
+function renderCamera(constraints) {
   navigator.mediaDevices
-    .getUserMedia({ video: true })
-    .then(function (stream) {
-      var video = document.querySelector("video");
+    .getUserMedia(constraints)
+    .then((stream) => {
+      const video = document.querySelector("video");
+      window.videoStream = stream;
       video.srcObject = stream;
-      video.onloadedmetadata = function (e) {
-        video.play();
-      };
+      video.onloadedmetadata = (_) => video.play();
     })
-    .catch(function (err) {
+    .catch((err) => {
       console.log(err.name + ": " + err.message);
     });
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+  renderCamera({ video: true });
 
   window.electronAPI.onMessageReceived(
     "shared-window-channel",
-    function (_, message) {
+    (_, message) => {
       const handler = eventHandlers[message.type];
       if (handler) {
         handler(message.payload);

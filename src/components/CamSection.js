@@ -61,16 +61,16 @@ const rectangleResolutionOptions = [
 
 const shapes = [
   {
-    value: "circle",
-    label: "Circle",
-  },
-  {
     value: "square",
     label: "Square",
   },
   {
     value: "rectangle",
     label: "Rectangle",
+  },
+  {
+    value: "circle",
+    label: "Circle",
   },
 ];
 

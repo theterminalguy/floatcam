@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Alert from "react-bootstrap/Alert";
-//import VideoPreview from "./VideoPreview";
+
+const { electronAPI } = window;
 
 const Camera = () => {
   const videoRef = useRef(null);
-  const [errorOccurred, setErrorOccurred] = useState(true);
+  const [errorOccurred, setErrorOccurred] = useState(false);
 
-  const [userApproved, setUserApproved] = useState(false);
   const [webcams, setWebcams] = React.useState([
     { deviceId: "loading", label: "Loading..." },
   ]);
@@ -20,16 +20,14 @@ const Camera = () => {
     console.log("navigator.getUserMedia error: ", error);
   };
 
-  const getWebcams = (streaming) => {
+  const getWebcams = () => {
     navigator.mediaDevices
       .enumerateDevices()
       .then(function (devices) {
-        const webcamList = devices.filter(function (device) {
-          return device.kind === "videoinput";
-        });
-        if (streaming) {
-          setWebcams(webcamList);
-        }
+        const webcamList = devices.filter(
+          (device) => device.kind === "videoinput"
+        );
+        setWebcams(webcamList);
       })
       .catch(handleError);
   };
@@ -46,7 +44,6 @@ const Camera = () => {
           playPromise
             .then(() => {
               setErrorOccurred(false);
-              setUserApproved(true);
             })
             .catch(handleError);
         }
@@ -55,24 +52,28 @@ const Camera = () => {
   };
 
   useEffect(() => {
-    askForPermission({ video: true });
-    getWebcams(userApproved);
-  }, [userApproved]);
+    getWebcams();
+  }, []);
 
   const handleChange = (event) => {
-    if (videoStream) {
+    /*if (videoStream) {
       videoStream.getTracks().forEach((track) => {
         track.stop();
       });
     }
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then(() => askForPermission(constraints))
+      .catch(handleError);*/
+
     const videoSource = event.target.value;
     const constraints = {
       video: { deviceId: videoSource },
     };
-    navigator.mediaDevices
-      .getUserMedia(constraints)
-      .then(() => askForPermission(constraints))
-      .catch(handleError);
+    electronAPI.sendSync("shared-window-channel", {
+      type: "set-video-stream",
+      payload: constraints,
+    });
   };
 
   return (

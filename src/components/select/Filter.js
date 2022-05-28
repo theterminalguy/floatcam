@@ -2,6 +2,8 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 
+const { electronAPI } = window;
+
 function Filter() {
   const filters = [
     {
@@ -55,15 +57,19 @@ function Filter() {
   ];
 
   const handleChange = (e) => {
-    const video = document.getElementById("video-player");
     let filter = e.target.value;
+    const style = {};
     if (filter === "drop-shadow(8px 8px 10px %s)") {
       const videoBorderColor =
         document.getElementById("video-border-color").value;
       filter = `drop-shadow(8px 8px 10px ${videoBorderColor})`;
     }
-    video.style.filter = filter;
-    video.style["-webkit-filter"] = `-webkit-${filter}`;
+    style.filter = filter;
+    style["-webkit-filter"] = `-webkit-${filter}`;
+    electronAPI.sendSync("shared-window-channel", {
+      type: "set-video-filter",
+      payload: style,
+    });
   };
   return (
     <Card.Text as="div">
