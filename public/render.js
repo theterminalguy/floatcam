@@ -31,10 +31,8 @@ function handleSetBorderColor(data) {
 function handleSetVideoStream(data) {
   const stream = window.videoStream;
   if (stream) {
-    console.log("stopping track");
     stream.getTracks().forEach((track) => track.stop());
   }
-  console.log("data", data);
   renderCamera(data);
 }
 
@@ -55,6 +53,7 @@ const eventHandlers = {
 };
 
 function renderCamera(constraints) {
+  console.log("constraints", constraints);
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
