@@ -33,9 +33,9 @@ app.whenReady().then(() => {
   const mainWindow = createMainWindow();
   const camWindow = createCameraWindow(mainWindow);
 
-  ipcMain.on("set-camera-resolution", (event, arg) => {
+  ipcMain.on("shared-window-channel", (event, arg) => {
     console.log("arg", arg);
-    camWindow.webContents.send("set-camera-resolution", arg);
+    camWindow.webContents.send("shared-window-channel", arg);
     event.returnValue = true;
   });
 

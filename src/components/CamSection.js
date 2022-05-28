@@ -87,7 +87,10 @@ function CamSection() {
     if (selectedShape === "rectangle") {
       [width, height] = size.split("|");
     }
-    electronAPI.sendSync("set-camera-resolution", { width, height });
+    electronAPI.sendSync("shared-window-channel", {
+      type: "set-camera-resolution",
+      payload: { width, height },
+    });
   };
 
   const handleShapeChange = (e) => {

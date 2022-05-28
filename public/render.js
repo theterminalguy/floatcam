@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
   window.electronAPI.onMessageReceived(
-    "set-camera-resolution",
+    "shared-window-channel",
     function (_, message) {
       console.log("message", message);
     }
