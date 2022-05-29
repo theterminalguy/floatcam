@@ -29,10 +29,6 @@ function handleSetBorderColor(data) {
 }
 
 function handleSetVideoStream(data) {
-  const stream = window.videoStream;
-  if (stream) {
-    stream.getTracks().forEach((track) => track.stop());
-  }
   renderCamera(data);
 }
 
@@ -52,15 +48,18 @@ const eventHandlers = {
   "set-video-filter": handleSetVideoFilter,
 };
 
+const video = document.querySelector("video");
+
 function renderCamera(constraints) {
   console.log("constraints", constraints);
+  if (video.srcObject) {
+    video.srcObject.getTracks().forEach((track) => track.stop());
+  }
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
-      const video = document.querySelector("video");
-      window.videoStream = stream;
       video.srcObject = stream;
-      video.onloadedmetadata = (_) => video.play();
+      video.play();
     })
     .catch((err) => {
       console.log(err.name + ": " + err.message);
@@ -68,7 +67,23 @@ function renderCamera(constraints) {
 }
 
 window.addEventListener("DOMContentLoaded", function () {
-  renderCamera({ video: true });
+  navigator.mediaDevices.enumerateDevices().then((devices) => {
+    const cams = devices.filter((device) => device.kind === "videoinput");
+    console.log("cams", cams);
+    window.electronAPI.sendSync("shared-window-channel", {
+      type: "set-webcams",
+      payload: JSON.stringify(cams),
+    });
+    const videoSource = cams[0].deviceId;
+    const constraints = {
+      video: {
+        deviceId: {
+          exact: videoSource,
+        },
+      },
+    };
+    renderCamera(constraints);
+  });
 
   window.electronAPI.onMessageReceived(
     "shared-window-channel",

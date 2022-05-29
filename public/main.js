@@ -35,6 +35,10 @@ app.whenReady().then(() => {
 
   ipcMain.on("shared-window-channel", (event, arg) => {
     camWindow.webContents.send("shared-window-channel", arg);
+    if (arg.type && arg.type === "set-webcams") {
+      console.log("set-webcams", arg.payload);
+      mainWindow.webContents.send("shared-window-channel", arg);
+    }
     event.returnValue = true;
   });
 

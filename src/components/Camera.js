@@ -12,31 +12,22 @@ const Camera = () => {
     { deviceId: "loading", label: "Loading..." },
   ]);
 
-  const handleError = (error) => {
-    setErrorOccurred(true);
-    console.log("navigator.getUserMedia error: ", error);
-  };
-
-  const getWebcams = () => {
-    navigator.mediaDevices
-      .enumerateDevices()
-      .then(function (devices) {
-        const webcamList = devices.filter(
-          (device) => device.kind === "videoinput"
-        );
-        setWebcams(webcamList);
-      })
-      .catch(handleError);
-  };
-
   useEffect(() => {
-    getWebcams();
-  }, [getWebcams]);
+    electronAPI.onMessageReceived("shared-window-channel", (_, message) => {
+      if (message.type === "set-webcams") {
+        setWebcams(JSON.parse(message.payload));
+      }
+    });
+  }, []);
 
   const handleChange = (event) => {
     const videoSource = event.target.value;
     const constraints = {
-      video: { deviceId: videoSource },
+      video: {
+        deviceId: {
+          exact: videoSource,
+        },
+      },
     };
     electronAPI.sendSync("shared-window-channel", {
       type: "set-video-stream",
