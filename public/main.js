@@ -42,6 +42,13 @@ app.whenReady().then(() => {
     if (arg.type && arg.type === "set-webcams") {
       mainWindow.webContents.send("shared-window-channel", arg);
     }
+    if (arg.type && arg.type === "set-camera-resolution") {
+      let { width, height } = arg.payload;
+      // adding 20 just to make sure the window is not too small to fit the camera
+      width = Number(width.replace("px", "")) + 20;
+      height = Number(height.replace("px", "")) + 20;
+      camWindow.setSize(width, height);
+    }
     event.returnValue = true;
   });
 
