@@ -12,9 +12,8 @@ function createMainWindow() {
   return win;
 }
 
-function createCameraWindow(parentWindow) {
+function createCameraWindow() {
   const win = new BrowserWindow({
-    parent: parentWindow,
     width: 500,
     height: 500,
     resizable: false,
@@ -28,7 +27,7 @@ function createCameraWindow(parentWindow) {
 
 app.whenReady().then(() => {
   const mainWindow = createMainWindow();
-  const camWindow = createCameraWindow(mainWindow);
+  const camWindow = createCameraWindow();
 
   ipcMain.on("shared-window-channel", (event, arg) => {
     camWindow.webContents.send("shared-window-channel", arg);

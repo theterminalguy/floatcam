@@ -32,7 +32,7 @@ function Filter() {
     },
     {
       value: "hue-rotate(180deg)",
-      label: "Mystique",
+      label: "Tola (Anne)",
     },
     {
       value: "invert(100%)",
