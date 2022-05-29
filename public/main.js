@@ -14,9 +14,17 @@ function createMainWindow() {
 
 function createCameraWindow() {
   const win = new BrowserWindow({
-    width: 500,
-    height: 500,
+    width: 120,
+    height: 120,
+    maxWidth: 500,
+    maxHeight: 500,
     resizable: false,
+    titleBarStyle: "hide",
+    transparent: true,
+    darkTheme: false,
+    hasShadow: false,
+    frame: false,
+    alwaysOnTop: true,
     webPreferences: {
       preload: __dirname + "/preload.js",
     },
