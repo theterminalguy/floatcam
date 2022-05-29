@@ -1,35 +1,36 @@
+const video = document.querySelector("video");
 const videoPlayer = document.getElementById("video-player");
 
-function handleSetCameraResolution(data) {
-  videoPlayer.style.width = data.width;
-  videoPlayer.style.height = data.height;
+function handleSetCameraResolution(style) {
+  videoPlayer.style.width = style.width;
+  videoPlayer.style.height = style.height;
 }
 
-function handleSetCameraShape(data) {
-  videoPlayer.style.borderRadius = data.borderRadius;
-  videoPlayer.style.width = data.width;
-  videoPlayer.style.height = data.height;
+function handleSetCameraShape(style) {
+  videoPlayer.style.borderRadius = style.borderRadius;
+  videoPlayer.style.width = style.width;
+  videoPlayer.style.height = style.height;
 }
 
-function handleSetCameraMirror(data) {
-  videoPlayer.style.transform = data.transform;
-  videoPlayer.style["-webkit-transform"] = data["-webkit-transform"];
+function handleSetCameraMirror(style) {
+  videoPlayer.style.transform = style.transform;
+  videoPlayer.style["-webkit-transform"] = style["-webkit-transform"];
 }
 
-function handleSetBorderWidth(data) {
-  videoPlayer.style.borderWidth = data;
+function handleSetBorderWidth(borderWidth) {
+  videoPlayer.style.borderWidth = borderWidth;
 }
 
-function handleSetBorderStyle(data) {
-  videoPlayer.style.borderStyle = data;
+function handleSetBorderStyle(borderStyle) {
+  videoPlayer.style.borderStyle = borderStyle;
 }
 
-function handleSetBorderColor(data) {
-  videoPlayer.style.borderColor = data;
+function handleSetBorderColor(borderColor) {
+  videoPlayer.style.borderColor = borderColor;
 }
 
-function handleSetVideoStream(data) {
-  renderCamera(data);
+function handleSetVideoStream(constraints) {
+  renderCamera(constraints);
 }
 
 function handleSetVideoFilter(data) {
@@ -48,10 +49,7 @@ const eventHandlers = {
   "set-video-filter": handleSetVideoFilter,
 };
 
-const video = document.querySelector("video");
-
 function renderCamera(constraints) {
-  console.log("constraints", constraints);
   if (video.srcObject) {
     video.srcObject.getTracks().forEach((track) => track.stop());
   }
@@ -69,7 +67,6 @@ function renderCamera(constraints) {
 window.addEventListener("DOMContentLoaded", function () {
   navigator.mediaDevices.enumerateDevices().then((devices) => {
     const cams = devices.filter((device) => device.kind === "videoinput");
-    console.log("cams", cams);
     window.electronAPI.sendSync("shared-window-channel", {
       type: "set-webcams",
       payload: JSON.stringify(cams),

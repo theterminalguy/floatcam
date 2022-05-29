@@ -9,8 +9,6 @@ function createMainWindow() {
     },
   });
   win.loadURL("http://localhost:3000");
-  // open devtools
-  win.webContents.openDevTools();
   return win;
 }
 
@@ -24,8 +22,7 @@ function createCameraWindow(parentWindow) {
       preload: __dirname + "/preload.js",
     },
   });
-  win.loadFile("public/cam.html"); // paint window with html
-  win.webContents.openDevTools(); // open devtools
+  win.loadFile("public/cam.html");
   return win;
 }
 
@@ -36,7 +33,6 @@ app.whenReady().then(() => {
   ipcMain.on("shared-window-channel", (event, arg) => {
     camWindow.webContents.send("shared-window-channel", arg);
     if (arg.type && arg.type === "set-webcams") {
-      console.log("set-webcams", arg.payload);
       mainWindow.webContents.send("shared-window-channel", arg);
     }
     event.returnValue = true;
