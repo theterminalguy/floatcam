@@ -33,9 +33,20 @@ function createCameraWindow() {
   return win;
 }
 
+function createPaintWindow() {
+  const win = new BrowserWindow({
+    width: 1200,
+    height: 1000,
+  });
+  win.loadFile("public/paint.html");
+  return win;
+}
+
 app.whenReady().then(() => {
   const mainWindow = createMainWindow();
   const camWindow = createCameraWindow();
+
+  createPaintWindow();
 
   ipcMain.on("shared-window-channel", (event, arg) => {
     camWindow.webContents.send("shared-window-channel", arg);
