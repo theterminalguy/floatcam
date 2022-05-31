@@ -95,6 +95,14 @@
           false
         );
 
+        document.querySelector("#eraser").addEventListener(
+          "click",
+          function () {
+            ctx.strokeStyle = "white";
+          },
+          false
+        );
+
         var onPaint = function () {
           ctx.beginPath();
           ctx.moveTo(last_mouse.x, last_mouse.y);
