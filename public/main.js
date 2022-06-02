@@ -46,7 +46,8 @@ app.whenReady().then(() => {
   const mainWindow = createMainWindow();
   const camWindow = createCameraWindow();
 
-  createPaintWindow();
+  // TODO: trigger with a button
+  // createPaintWindow();
 
   ipcMain.on("shared-window-channel", (event, arg) => {
     camWindow.webContents.send("shared-window-channel", arg);
