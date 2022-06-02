@@ -45,12 +45,29 @@
     false
   );
 
-  document.querySelector("#btn-pencil").addEventListener(
+  const btnPencil = document.querySelector("#btn-pencil");
+  const btnEraser = document.querySelector("#btn-eraser");
+
+  btnPencil.addEventListener(
     "click",
     function () {
       ctx.strokeStyle = document.querySelector("#color-picker").value;
       sketch.classList.add("cursor-pencil");
       sketch.classList.remove("cursor-eraser");
+      btnPencil.classList.add("button-pressed");
+      btnEraser.classList.remove("button-pressed");
+    },
+    false
+  );
+
+  btnEraser.addEventListener(
+    "click",
+    function () {
+      ctx.strokeStyle = "white";
+      sketch.classList.add("cursor-eraser");
+      sketch.classList.remove("cursor-pencil");
+      btnEraser.classList.add("button-pressed");
+      btnPencil.classList.remove("button-pressed");
     },
     false
   );
@@ -67,16 +84,6 @@
     "click",
     function () {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-    },
-    false
-  );
-
-  document.querySelector("#btn-eraser").addEventListener(
-    "click",
-    function () {
-      ctx.strokeStyle = "white";
-      sketch.classList.add("cursor-eraser");
-      sketch.classList.remove("cursor-pencil");
     },
     false
   );
