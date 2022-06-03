@@ -147,16 +147,6 @@ body {
   color: #fff;
 }
 
-#video-player {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  margin-top: 25%;
-}
-
 .card-text {
   margin-bottom: 10px !important;
 }

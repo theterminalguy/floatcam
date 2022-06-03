@@ -2,6 +2,7 @@
   "name": "reapp",
   "version": "0.1.0",
   "private": true,
+  "main": "public/main.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
@@ -15,6 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "desktop": "electron .",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -36,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^19.0.1"
   }
 }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Draw</title>
+    <!-- TODO: download fontawesome min css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="paint.css" />
+  </head>
+  <body>
+    <div id="toolbar">
+      <button id="btn-pencil" class="button-pressed">
+        <i class="fa-solid fa-pencil"></i> Pencil
+      </button>
+      <input
+        type="color"
+        id="color-picker"
+        value="#ffa502"
+        style="height: 22px; width: 62px"
+      />
+      <button id="btn-eraser"><i class="fa-solid fa-eraser"></i> Eraser</button>
+      <button id="btn-clear"><i class="fa-solid fa-trash"></i> Clear</button>
+    </div>
+
+    <div id="sketch" class="cursor-pencil">
+      <canvas id="paint"></canvas>
+    </div>
+
+    <script src="paint.js"></script>
+  </body>
+</html>

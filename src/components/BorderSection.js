@@ -5,10 +5,14 @@ import Card from "react-bootstrap/Card";
 import SelectBorderWidth from "./select/BorderWidth";
 import SelectBorderStyle from "./select/BorderStyle";
 
+const { electronAPI } = window;
+
 function BorderSection() {
   const handleColorChange = (event) => {
-    const video = document.getElementById("video-player");
-    video.style.borderColor = event.target.value;
+    electronAPI.sendSync("shared-window-channel", {
+      type: "set-border-color",
+      payload: event.target.value,
+    });
   };
 
   return (

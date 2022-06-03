@@ -7,6 +7,8 @@ import SelectResolution from "./select/Resolution";
 import SelectCamera from "./Camera";
 import SelectShape from "./select/Shape";
 
+const { electronAPI } = window;
+
 const defaultResolutionOptions = [
   {
     value: "100px",
@@ -59,16 +61,16 @@ const rectangleResolutionOptions = [
 
 const shapes = [
   {
-    value: "circle",
-    label: "Circle",
-  },
-  {
     value: "square",
     label: "Square",
   },
   {
     value: "rectangle",
     label: "Rectangle",
+  },
+  {
+    value: "circle",
+    label: "Circle",
   },
 ];
 
@@ -80,56 +82,63 @@ function CamSection() {
   const [selectedShape, setSelectedShape] = useState("circle");
 
   const handleResolutionChange = (e) => {
-    const video = document.getElementById("video-player");
     const size = e.target.value;
+    let [width, height] = [size, size];
     if (selectedShape === "rectangle") {
-      const [width, height] = size.split("|");
-      video.style.width = width;
-      video.style.height = height;
-      return;
+      [width, height] = size.split("|");
     }
-    video.style.width = size;
-    video.style.height = size;
+    electronAPI.sendSync("shared-window-channel", {
+      type: "set-camera-resolution",
+      payload: { width, height },
+    });
   };
 
   const handleShapeChange = (e) => {
-    const video = document.getElementById("video-player");
     const shape = e.target.value;
+    const style = {};
     setSelectedShape(shape);
     switch (shape) {
       case "circle":
         setResolutionOptions(defaultResolutionOptions);
-        video.style.borderRadius = "50%";
-        video.style.width = "100px";
-        video.style.height = "100px";
+        style.borderRadius = "50%";
+        style.width = "100px";
+        style.height = "100px";
         break;
       case "square":
         setResolutionOptions(defaultResolutionOptions);
-        video.style.borderRadius = "0";
-        video.style.width = "100px";
-        video.style.height = "100px";
+        style.borderRadius = "0";
+        style.width = "100px";
+        style.height = "100px";
         break;
       case "rectangle":
         setResolutionOptions(rectangleResolutionOptions);
-        video.style.width = "250px";
-        video.style.height = "100px";
-        video.style.borderRadius = "0";
+        style.width = "250px";
+        style.height = "100px";
+        style.borderRadius = "0";
         break;
       default:
         break;
     }
+    electronAPI.sendSync("shared-window-channel", {
+      type: "set-camera-shape",
+      payload: style,
+    });
   };
 
   const handleMirrorChange = (e) => {
-    const video = document.getElementById("video-player");
     const mirror = e.target.checked;
+    const style = {};
     if (mirror) {
-      video.style.transform = "scaleX(-1)";
-      video.style["-webkit-transform"] = "-webkit-scaleX(-1)";
+      style.transform = "scaleX(-1)";
+      style["-webkit-transform"] = "-webkit-scaleX(-1)";
     } else {
-      video.style.transform = "scaleX(1)";
-      video.style["-webkit-transform"] = "scaleX(1)";
+      style.transform = "scaleX(1)";
+      style["-webkit-transform"] = "scaleX(1)";
     }
+    electronAPI.sendSync("shared-window-channel", {
+      type: "set-camera-mirror",
+      payload: style,
+    });
   };
 
   return (
