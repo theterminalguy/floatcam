@@ -33,18 +33,12 @@ function createCameraWindow() {
   return win;
 }
 
-function createPaintWindow() {
-  const win = new BrowserWindow({
-    width: 1200,
-    height: 1000,
-  });
-  win.loadFile("public/paint.html");
-  return win;
-}
+
 
 app.whenReady().then(() => {
   const mainWindow = createMainWindow();
   const camWindow = createCameraWindow();
+  camWindow.setAlwaysOnTop(true, "floating", 1);
 
   // TODO: trigger with a button
   // createPaintWindow();
