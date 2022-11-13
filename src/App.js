@@ -23,7 +23,7 @@ function App() {
     <Container className="p-3">
       <Container className="p-5 mb-4 bg-light rounded-3">
         <h1 className="header">
-          floatcam{" "}
+          <span style={{fontStyle: "italic", fontSize: "54px"}}>f</span>loatcam{" "}
           <span role="img" arial-label="camera-with-flash">
             📸
           </span>
