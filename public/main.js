@@ -2,8 +2,9 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 
 function createMainWindow() {
   const win = new BrowserWindow({
-    width: 800,
+    width: 700,
     height: 600,
+    maximizable: false,
     webPreferences: {
       preload: __dirname + "/preload.js",
     },
