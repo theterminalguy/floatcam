@@ -2,9 +2,9 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 
 function createMainWindow() {
   const win = new BrowserWindow({
-    width: 700,
-    height: 600,
+    width: 600,
     maximizable: false,
+    resizable: false,
     webPreferences: {
       preload: __dirname + "/preload.js",
     },
@@ -34,15 +34,10 @@ function createCameraWindow() {
   return win;
 }
 
-
-
 app.whenReady().then(() => {
   const mainWindow = createMainWindow();
   const camWindow = createCameraWindow();
   camWindow.setAlwaysOnTop(true, "floating", 1);
-
-  // TODO: trigger with a button
-  // createPaintWindow();
 
   ipcMain.on("shared-window-channel", (event, arg) => {
     camWindow.webContents.send("shared-window-channel", arg);
@@ -60,7 +55,7 @@ app.whenReady().then(() => {
   });
 
   app.on("activate", () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    if (BrowserWindow.getAllWindows().length === 0) createMainWindow();
   });
 });
 
