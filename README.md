@@ -1,5 +1,10 @@
 <p align="center">
-  <img  src="./src/floatcam.jpg" height="125px" alt="Floatcam logo" style="border-radius: 50%">
+  <img  src="./src/floatcam.jpg" height="125px" alt="Floatcam logo"> <br/>
+  <img  src="https://img.shields.io/badge/Version-1.0.0-blue.svg" alt="Version 1.0.0" />
+  <img  src="https://img.shields.io/badge/Build-Passing-green.svg" alt="Build Passing" />
+  <img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square" alt="License MIT" />
+  
+
 </p>
 
 **Floatcam** is a simple, lightweight, and easy-to-use camera app that you can use alongside any screen recorder. It floats on top of other apps, so you can easily record your screen and your face at the same time.
@@ -62,8 +67,6 @@ If you want to contribute to Floatcam, you can do so by:
 
 If you want to build Floatcam from source, you can do so by cloning the repository and use electron-forge to build it.
 
-## License
-
 ## Support
 
-If you like Floatcam, you can support me by buying me a coffee.
+If you like Floatcam, you can support me [by buying me a coffee](https://www.buymeacoffee.com/theterminalguy).
