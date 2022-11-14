@@ -32,17 +32,17 @@ Floatcam is available on macOS, Windows and Linux. You can download it from the 
 
 After installing, launch and customize the settings to your liking. When you are done customizing, you can minimize the settings window and start recording or move the settings window to a different monitor.
 
-![Adjusting floacam settings](./1.gif)
+![Adjusting floacam settings](./adjust-float.gif)
 
 The floating window can be moved around, resized and have its shape changed during recording. You can also add a border to the window and a filter to the camera.
 
-![Moving the floating window](./2.gif)
+![Moving the floating window](./move-float.gif)
 
 ### Using floatcam with Snap Camera (macOS and Windows only)
 
 Snap Camera is a virtual camera app that allows you to use Snapchat filters while recording. You can download it from the [Snap Camera website](https://snapcamera.snapchat.com/). After installing, Floatcam will automatically detect it and it will show up in the list of available camera sources.
 
-![Using floatcam with Snap Camera](./3.gif)
+![Using floatcam with Snap Camera](./floatcam-snap.gif)
 
 ## Why Floatcam?
 
