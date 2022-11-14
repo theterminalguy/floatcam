@@ -1,8 +1,8 @@
 <p align="center">
-  <img  src="./floatcam.jpg">
+  <img  src="./floatcam.jpg" height="150px">
 </p>
 
-Floatcam is a simple, lightweight, and easy-to-use camera app that you can use alongside any screen recorder. It floats on top of other apps, so you can easily record your screen and your face at the same time.
+**Floatcam** is a simple, lightweight, and easy-to-use camera app that you can use alongside any screen recorder. It floats on top of other apps, so you can easily record your screen and your face at the same time.
 
 It is perfect for recording tutorials, gameplay, or anything else you want to share with the world. The floating camera preview can be moved around while recording. You don't have to worry about the camera getting in the way of your recording or making such adjustment post-production.
 
