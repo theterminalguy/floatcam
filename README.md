@@ -8,7 +8,7 @@
 
 </p>
 
-**Floatcam** is a simple, lightweight, and easy-to-use camera app that you can use alongside any screen recorder. It floats on top of other apps, so you can easily record your screen and your face at the same time.
+**Floatcam** is a simple, lightweight, and easy-to-use camera app that can be used alongside any screen recorder. It floats on top of other apps, so you can easily record your screen and your face at the same time.
 
 It is perfect for recording tutorials, gameplay, or anything else you want to share with the world. The floating camera preview can be moved around while recording. You don't have to worry about the camera getting in the way of your recording or making such adjustment post-production.
 
@@ -24,7 +24,7 @@ It is perfect for recording tutorials, gameplay, or anything else you want to sh
 
 ## Installation
 
-Floatcam is available on macOS, Windows and Linux. You can download it from the [releases] page.
+Floatcam is available on macOS, Windows and Linux. You can download it from the [releases](https://github.com/theterminalguy/floatcam/releases) page.
 
 > **Note:** Floatcam is currently in beta. If you find any bugs, [please raise an issue](https://github.com/theterminalguy/floatcam/issues/new). Also, we don't have a code signing certificate yet, so you might have to allow the app to run on your system.
 
@@ -40,23 +40,25 @@ The floating window can be moved around, resized and have its shape changed duri
 
 ### Using floatcam with Snap Camera (macOS and Windows only)
 
-Snap Camera is a virtual camera app that allows you to use Snapchat filters while recording. You can download it from the [Snap Camera website](https://snapcamera.snapchat.com/). After installing, Floatcam will automatically detect it and it will show up in the list of available camera sources.
+Snap Camera is a virtual camera app that lets you add Snapchat filters to your camera. You can download it from the [Snap Camera website](https://snapcamera.snapchat.com/). After installing, Floatcam will automatically detect it and it will show up in the list of available camera sources.
 
 ![Using floatcam with Snap Camera](./floatcam-snap.gif)
 
 ## Why Floatcam?
 
-There are a lot of screen recorders out there, but most of them do not have a built-in camera. For those with a camera, it's either not floating, can't be moved around, not customizable or requires paying for a premium version. 
+There are a lot of screen recorders out there, but most of them do not have a built-in camera. For those with a camera, it's either not floating, can't be moved around, is not customizable, or requires paying for a premium version.
 
 ### A Brief History of Floatcam
 
-The default screen recorder on macOS (Quicktime) does have a way to record the screen and the camera. However, it is not customizable and can sometimes get in the way of the recording.  On Linux, I used Kazam, which is a great screen recorder, but it does not have a built-in camera. One thing all these screen recorders have in common is that they are not customizable.
+The default screen recorder on macOS (Quicktime) does have a way to record the screen and the camera. However, it is not customizable and sometimes interferes with the recording. On Linux, I used Kazam, but it does not have a built-in camera. 
 
-[Loom](https://www.loom.com/), a popular screen recorder let's you do some of these things but it's not free. It features a floating camera, a screen recorder and a video editor. It's a great tool, but you have a recording limit of 5 minutes for the free version.
+One thing all these screen recorders have in common is that they are not customizable.
+
+[Loom](https://www.loom.com/), a popular screen recorder allows you to do some customization but it's not free. It features a floating camera, a screen recorder and a video editor. It's a great tool, but you have a recording limit of 5 minutes for the free version.
 
 Since there are lots of amazing FREE screen recorders out there and all I wanted was a floating camera, I decided to make my own. I thought it would be nice to have a simple camera app that you can use alongside any screen recorder.
 
-I hope you enjoy using Floatcam as much as I enjoyed making it. If you have any questions, suggestions, or feedback, feel free to reach out to me on [Twitter](https://twitter.com/theterminalguy).
+I hope you enjoy using Floatcam as much as I enjoyed making it. If you have any questions, suggestions, or feedback, feel free to reach out to me on [Twitter](https://twitter.com/theterminalguy) or send me an email.
 
 ## Roadmap
 
@@ -78,4 +80,4 @@ If you want to build Floatcam from source, you can do so by cloning the reposito
 
 ## Support
 
-If you like Floatcam, you can support me [by buying me a coffee](https://www.buymeacoffee.com/theterminalguy).
+If you like Floatcam, support me [by buying me a coffee](https://www.buymeacoffee.com/theterminalguy).
