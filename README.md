@@ -14,7 +14,7 @@ It is perfect for recording tutorials, gameplay, or anything else you want to sh
 
 ## Features
 
-Floatcam features a wide range of settings for 
+[Floatcam](https://github.com/theterminalguy/floatcam) features a wide range of settings for 
 
 - Customizing the shape of the floating window
 - Changing the size of the floating window
@@ -30,9 +30,14 @@ Floatcam is available on macOS, Windows and Linux. You can download it from the 
 
 ## Usage
 
-After installing Floatcam, launch it and customize the settings to your liking. When you are done customizing, you can minimize the settings window and start recording. You can move the floating window around while recording. You can also resize the floating window while recording. You can also change the shape of the floating window while recording.
+After installing, launch and customize the settings to your liking. When you are done customizing, you can minimize the settings window and start recording or move the settings window to a different monitor.
 
-[![Floatcam Demo](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+![Adjusting floacam settings](./1.gif)
+
+The floating window can be moved around, resized and have its shape changed during recording. You can also add a border to the window and a filter to the camera.
+
+![Moving the floating window](./2.gif)
+
 ### Using floatcam with Snap Camera (macOS only)
 
 Floatcam works great with Snap Camera. You can use Snap Camera to add a virtual background to your video. You can also use Snap Camera to add a virtual filter to your video. You can use Snap Camera to add a virtual background and a virtual filter to your video. You can use Snap Camera to add a virtual background and a virtual filter to your video and then record it with Floatcam.
