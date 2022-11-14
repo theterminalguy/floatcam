@@ -38,13 +38,11 @@ The floating window can be moved around, resized and have its shape changed duri
 
 ![Moving the floating window](./2.gif)
 
-### Using floatcam with Snap Camera (macOS only)
+### Using floatcam with Snap Camera (macOS and Windows only)
 
-Floatcam works great with Snap Camera. You can use Snap Camera to add a virtual background to your video. You can also use Snap Camera to add a virtual filter to your video. You can use Snap Camera to add a virtual background and a virtual filter to your video. You can use Snap Camera to add a virtual background and a virtual filter to your video and then record it with Floatcam.
+Snap Camera is a virtual camera app that allows you to use Snapchat filters while recording. You can download it from the [Snap Camera website](https://snapcamera.snapchat.com/). After installing, Floatcam will automatically detect it and it will show up in the list of available camera sources.
 
-If you have Snap Camera installed, Floatcam will detect it and it will show up in the list of available cameras. You can select Snap Camera as the camera to use in Floatcam.
-
-[![Floatcam Demo](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+![Using floatcam with Snap Camera](./3.gif)
 
 ## Why Floatcam?
 
@@ -54,17 +52,17 @@ There are a lot of screen recorders out there, but most of them do not have a bu
 
 The default screen recorder on macOS (Quicktime) does have a way to record the screen and the camera. However, it is not customizable and can sometimes get in the way of the recording.  On Linux, I used Kazam, which is a great screen recorder, but it does not have a built-in camera. One thing all these screen recorders have in common is that they are not customizable.
 
-Loom, a popular screen recorder let's you do some of these things but it's not free. It features a floating camera, a screen recorder and a video editor. It's a great tool, but you have a recording limit of 5 minutes for the free version.
+[Loom](https://www.loom.com/), a popular screen recorder let's you do some of these things but it's not free. It features a floating camera, a screen recorder and a video editor. It's a great tool, but you have a recording limit of 5 minutes for the free version.
 
 Since there are lots of amazing FREE screen recorders out there and all I wanted was a floating camera, I decided to make my own. I thought it would be nice to have a simple camera app that you can use alongside any screen recorder.
 
-I hope you enjoy using Floatcam as much as I enjoyed making it. If you have any questions, suggestions, or feedback, feel free to reach out to me on [Twitter] or [Telegram].
+I hope you enjoy using Floatcam as much as I enjoyed making it. If you have any questions, suggestions, or feedback, feel free to reach out to me on [Twitter](https://twitter.com/theterminalguy).
 
 ## Roadmap
 
-I have thought about some cool features that I would like to add to Floatcam like screen annotation, a simple whiteboard, area protection and more. 
+I have thought about some cool features that I would like to add like screen annotation, a simple whiteboard, area protection and more. 
 
-While all of these features sounds cool, it's not the reason why I made Floatcam. I will add those features when I have the time.
+While all of these features sounds cool, it's not the reason why I made Floatcam. I may add those features when I have the time.
 
 ## Contributing
 
