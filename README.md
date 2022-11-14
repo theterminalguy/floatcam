@@ -1,9 +1,10 @@
 <p align="center">
   <img  src="./floatcam-circle.png" height="125px" alt="Floatcam logo"> <br/>
-  <img  src="https://img.shields.io/badge/Version-1.0.0-blue.svg" alt="Version 1.0.0" />
+  <img  src="https://img.shields.io/badge/Version-0.1.0-blue.svg" alt="Version 1.0.0" />
   <img  src="https://img.shields.io/badge/Build-Passing-green.svg" alt="Build Passing" />
   <img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square" alt="License MIT" />
   
+  <img src="https://img.shields.io/badge/Platform-Linux%20%7C%20MacOS%20%7C%20Windows-blue?style=flat-square" alt="Platform Linux | MacOS | Windows" />
 
 </p>
 
