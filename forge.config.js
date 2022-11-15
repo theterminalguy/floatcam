@@ -1,13 +1,6 @@
 module.exports = {
   packagerConfig: {},
   rebuildConfig: {},
-  config: {
-    forge: {
-      packagerConfig: {
-        icon: 'images/icon',
-      }
-    }
-  },
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
@@ -15,6 +8,7 @@ module.exports = {
     },
     {
       name: '@electron-forge/maker-zip',
+      config: {},
       platforms: ['darwin'],
     },
     {
