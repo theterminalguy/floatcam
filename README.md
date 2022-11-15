@@ -32,6 +32,10 @@ Floatcam is available on macOS, Windows and Linux. You can download it from the 
 
 ## Usage
 
+Here is a quick demo on how to use Floatcam:
+
+[![Floatcam Demo](https://img.youtube.com/vi/r1SKmGSIw7s/0.jpg)](https://youtu.be/r1SKmGSIw7s)
+
 After installing, launch and customize the settings to your liking. When you are done customizing, you can minimize the settings window and start recording or move the settings window to a different monitor.
 
 ![Adjusting floacam settings](images//adjust-float.gif)
