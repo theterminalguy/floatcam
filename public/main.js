@@ -6,6 +6,7 @@ function createMainWindow() {
     width: 600,
     maximizable: false,
     resizable: false,
+    autoHideMenuBar: true,
     webPreferences: {
       preload: __dirname + "/preload.js",
       nodeIntegration: true,
@@ -15,6 +16,8 @@ function createMainWindow() {
     process.env.NODE_ENV === "development" ?
       "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`;
   win.loadURL(loadURL);
+  win.removeMenu();
+  win.setMenuBarVisibility(false);
   return win;
 }
 
