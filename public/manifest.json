@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "floatcam",
+  "name": "Simple, lightweight, and easy-to-use floating camera for any screen recorder",
   "icons": [
     {
       "src": "favicon.ico",
