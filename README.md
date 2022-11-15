@@ -78,6 +78,18 @@ If you want to contribute to Floatcam, you can do so by:
 
 If you want to build Floatcam from source, you can do so by cloning the repository and use electron-forge to build it.
 
+## Developing locally
+
+First ensure you have the correct version of Node.js installed. If you are using [nvm](https://github.com/nvm-sh/nvm) you can run `nvm use` to switch to the correct version.
+
+Next, clone the repository and install the dependencies.
+
+```bash 
+git clone https://github.com/theterminalguy/floatcam.git && cd floatcam && yarn install
+```
+
+To start the app, you'd need to run `yarn start` and `yarn desktop` in two separate terminals.
+
 ## Support
 
 If you like Floatcam, support me [by buying me a coffee](https://www.buymeacoffee.com/theterminalguy).
