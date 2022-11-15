@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import logo from "./floatcam.jpg";
+import logo from "./floatcam-circle.png";
 
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -28,8 +28,7 @@ function App() {
             src={logo}
             alt="FloatCam Logo"
             height="65px"
-            width="65px"
-            style={{ borderRadius: "50%" }}
+            width="65px" 
           />
         </h1>
         <h1 className="header" style={{ textAlign: "center" }}>

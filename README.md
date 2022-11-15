@@ -1,5 +1,5 @@
 <p align="center">
-  <img  src="./floatcam-circle.png" height="125px" alt="Floatcam logo"> <br/>
+  <img  src="images/floatcam-circle.png" height="125px" alt="Floatcam logo"> <br/>
   <img  src="https://img.shields.io/badge/Version-0.1.0-blue.svg" alt="Version 1.0.0" />
   <img  src="https://img.shields.io/badge/Build-Passing-green.svg" alt="Build Passing" />
   <img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square" alt="License MIT" />
@@ -32,7 +32,7 @@ Floatcam is available on macOS, Windows and Linux. You can download it from the 
 
 After installing, launch and customize the settings to your liking. When you are done customizing, you can minimize the settings window and start recording or move the settings window to a different monitor.
 
-![Adjusting floacam settings](./adjust-float.gif)
+![Adjusting floacam settings](images//adjust-float.gif)
 
 The floating window can be moved around, resized and have its shape changed during recording. You can also add a border to the window and a filter to the camera.
 
@@ -42,7 +42,7 @@ The floating window can be moved around, resized and have its shape changed duri
 
 Snap Camera is a virtual camera app that lets you add Snapchat filters to your camera. You can download it from the [Snap Camera website](https://snapcamera.snapchat.com/). After installing, Floatcam will automatically detect it and it will show up in the list of available camera sources.
 
-![Using floatcam with Snap Camera](./floatcam-snap.gif)
+![Using floatcam with Snap Camera](images/floatcam-snap.gif)
 
 ## Why Floatcam?
 
