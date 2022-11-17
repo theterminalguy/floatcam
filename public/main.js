@@ -1,5 +1,5 @@
 const path = require("path");
-const { app, BrowserWindow, ipcMain, Notification, systemPreferences } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 
 function createMainWindow() {
   const win = new BrowserWindow({
@@ -24,7 +24,7 @@ function createMainWindow() {
 function createCameraWindow() {
   const win = new BrowserWindow({
     width: 120,
-    height: 120,
+    height: 121,
     maxWidth: 500,
     maxHeight: 500,
     resizable: false,
@@ -42,22 +42,9 @@ function createCameraWindow() {
   return win;
 }
 
-app.whenReady().then(async () => {
-  const camAllowed = await systemPreferences.askForMediaAccess("camera").then(async (access) => {
-    if (!access) {
-       new Notification({
-        title: "Camera Access",
-        body: "Camera access is required to use this app",
-      }).show();
-      return false;
-    }
-    return true;
-  });
+app.disableHardwareAcceleration(); // for windows
 
-  if (!camAllowed) {
-    app.quit();
-  }
-
+app.whenReady().then(() => {
   const mainWindow = createMainWindow();
   const camWindow = createCameraWindow();
   camWindow.setAlwaysOnTop(true, "floating", 1);

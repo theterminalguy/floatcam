@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "main": "public/main.js",
+  "build": {
+    "extraMetadata": {
+      "main": "build/main.js"
+    }
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
@@ -50,6 +55,7 @@
     "@electron-forge/maker-rpm": "^6.0.1",
     "@electron-forge/maker-squirrel": "^6.0.1",
     "@electron-forge/maker-zip": "^6.0.1",
-    "electron": "^19.0.1"
+    "electron": "^19.0.1",
+    "electron-builder": "^23.6.0"
   }
 }
