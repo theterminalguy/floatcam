@@ -14,6 +14,7 @@
 
 It is perfect for recording tutorials, gameplay, or anything else you want to share with the world. The floating camera preview can be moved around while recording. You don't have to worry about the camera getting in the way of your recording or making such adjustment post-production.
 
+## _If you have tried floatcam recently, [please feel free to suggest feedback or features you'd like to see next](https://forms.gle/J4BgqbDo1kYLxiPy7). Thanks._
 ## Features
 
 [Floatcam](https://github.com/theterminalguy/floatcam) features a wide range of settings for 
