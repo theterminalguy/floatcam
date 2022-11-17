@@ -94,8 +94,4 @@ Next, clone the repository and install the dependencies.
 git clone https://github.com/theterminalguy/floatcam.git && cd floatcam && yarn install
 ```
 
-To start the app, you'd need to run `yarn start` and `yarn desktop` in two separate terminals.
-
-## Support
-
-If you like Floatcam, support me [by buying me a coffee](https://www.buymeacoffee.com/theterminalguy).
+To start the app, you'd need to run `yarn build && yarn start` and `yarn desktop` in two separate terminals.
