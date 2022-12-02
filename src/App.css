@@ -1,7 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+@font-face {
+  font-family: 'ABeeZee-Regular';
+  src: local('ABeeZee-Regular'), 
+      url('./fonts/ABeeZee-Regular.woff2') format('woff2')
+      url('./fonts/ABeeZee-Italic.woff2') format('woff2');
+}
 
 body {
-  font-family: 'Exo', sans-serif;
+  font-family: 'ABeeZee-Regular';
 }
 
 #preview {
