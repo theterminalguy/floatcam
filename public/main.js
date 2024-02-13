@@ -1,5 +1,12 @@
 const path = require("path");
-const { app, BrowserWindow, ipcMain, Notification, systemPreferences } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  Notification,
+  systemPreferences,
+} = require("electron");
+const os = require("node:os");
 
 function createMainWindow() {
   const win = new BrowserWindow({
@@ -13,8 +20,9 @@ function createMainWindow() {
     },
   });
   const loadURL =
-    process.env.NODE_ENV === "development" ?
-      "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`;
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : `file://${path.join(__dirname, "../build/index.html")}`;
   win.loadURL(loadURL);
   win.removeMenu();
   win.setMenuBarVisibility(false);
@@ -23,8 +31,8 @@ function createMainWindow() {
 
 function createCameraWindow() {
   const win = new BrowserWindow({
-    width: 120,
-    height: 120,
+    width: 125,
+    height: 125,
     maxWidth: 500,
     maxHeight: 500,
     resizable: false,
@@ -43,25 +51,32 @@ function createCameraWindow() {
 }
 
 app.whenReady().then(async () => {
-  const camAllowed = await systemPreferences.askForMediaAccess("camera").then(async (access) => {
-    if (!access) {
-       new Notification({
-        title: "Camera Access",
-        body: "Camera access is required to use this app",
-      }).show();
-      return false;
-    }
-    return true;
-  });
+  const access = systemPreferences.getMediaAccessStatus("camera");
+  if (access !== "granted") {
+    const camAllowed = await systemPreferences
+      .askForMediaAccess("camera")
+      .then(async (access) => {
+        if (!access) {
+          new Notification({
+            title: "Camera Access",
+            body: "Camera access is required to use this app",
+          }).show();
+          return false;
+        }
+        return true;
+      });
 
-  if (!camAllowed) {
-    app.quit();
+    if (!camAllowed) {
+      app.quit();
+    }
   }
 
   const mainWindow = createMainWindow();
   const camWindow = createCameraWindow();
   camWindow.setAlwaysOnTop(true, "floating", 1);
 
+  let borderSize = 0;
+  let lastSizeWith = [125, 125];
   ipcMain.on("shared-window-channel", (event, arg) => {
     camWindow.webContents.send("shared-window-channel", arg);
     if (arg.type && arg.type === "set-webcams") {
@@ -70,9 +85,35 @@ app.whenReady().then(async () => {
     if (arg.type && arg.type === "set-camera-resolution") {
       let { width, height } = arg.payload;
       // adding 20 just to make sure the window is not too small to fit the camera
-      width = Number(width.replace("px", "")) + 20;
-      height = Number(height.replace("px", "")) + 20;
+      width = Number(width.replace("px", "")) + 25;
+      height = Number(height.replace("px", "")) + 25;
+      lastSizeWith = [width, height];
       camWindow.setSize(width, height);
+    } else if (arg.type && arg.type === "set-border-width") {
+      switch (arg.payload) {
+        case "0": {
+          borderSize = 0;
+          break;
+        }
+        case "thin": {
+          borderSize = 3;
+          break;
+        }
+        case "medium": {
+          borderSize = 5;
+          break;
+        }
+        case "thick": {
+          borderSize = 20;
+          break;
+        }
+      }
+
+      // Resize window with count borders
+      camWindow.setSize(
+        lastSizeWith[0] + borderSize,
+        lastSizeWith[1] + borderSize
+      );
     }
     event.returnValue = true;
   });
