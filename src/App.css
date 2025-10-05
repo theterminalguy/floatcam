@@ -19,6 +19,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   overflow: hidden;
+  background: transparent !important;
+}
+
+#root {
+  background: transparent;
 }
 
 .app-container {

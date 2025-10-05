@@ -8,8 +8,13 @@ const electron_1 = require("electron");
 function createMainWindow() {
     const win = new electron_1.BrowserWindow({
         width: 600,
+        height: 800,
         maximizable: false,
         resizable: false,
+        transparent: true,
+        frame: false,
+        titleBarStyle: "hidden",
+        hasShadow: false,
         autoHideMenuBar: true,
         webPreferences: {
             preload: path_1.default.join(__dirname, "preload.js"),
