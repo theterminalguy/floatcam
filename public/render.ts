@@ -87,6 +87,16 @@ function renderCamera(constraints: MediaStreamConstraints): void {
 
 /// <reference path="types.d.ts" />
 
+function sendWebcamList(): void {
+  navigator.mediaDevices.enumerateDevices().then((devices) => {
+    const cams = devices.filter((device) => device.kind === "videoinput");
+    window.electronAPI.sendSync("shared-window-channel", {
+      type: "set-webcams",
+      payload: JSON.stringify(cams),
+    });
+  });
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   navigator.mediaDevices.enumerateDevices().then((devices) => {
     const cams = devices.filter((device) => device.kind === "videoinput");
@@ -111,6 +121,12 @@ window.addEventListener("DOMContentLoaded", () => {
   window.electronAPI.onMessageReceived(
     "shared-window-channel",
     (_, message) => {
+      // Handle request for webcam list
+      if (message.type === "request-webcams") {
+        sendWebcamList();
+        return;
+      }
+
       const handler = eventHandlers[message.type];
       if (handler) {
         handler(message.payload);

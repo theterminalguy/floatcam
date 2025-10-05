@@ -15,12 +15,16 @@ import FlipPopover from "./popovers/FlipPopover";
 import ShapePopover from "./popovers/ShapePopover";
 import FilterPopover from "./popovers/FilterPopover";
 import BorderPopover from "./popovers/BorderPopover";
+import ConfirmDialog from "./ConfirmDialog";
+
+const { electronAPI } = window;
 
 type PopoverType = "camera" | "size" | "flip" | "shape" | "filter" | "border" | null;
 
 export default function Sidebar() {
   const [activePopover, setActivePopover] = useState<PopoverType>(null);
   const [popoverPosition, setPopoverPosition] = useState<number>(0);
+  const [showExitDialog, setShowExitDialog] = useState<boolean>(false);
 
   const togglePopover = (popover: PopoverType, event: React.MouseEvent<HTMLButtonElement>) => {
     if (activePopover === popover) {
@@ -65,7 +69,19 @@ export default function Sidebar() {
   };
 
   const handleExit = () => {
-    window.close();
+    setShowExitDialog(true);
+  };
+
+  const confirmExit = () => {
+    // Send message to main process to close all windows
+    electronAPI.sendSync("shared-window-channel", {
+      type: "exit-app",
+      payload: "",
+    });
+  };
+
+  const cancelExit = () => {
+    setShowExitDialog(false);
   };
 
   return (
@@ -197,6 +213,13 @@ export default function Sidebar() {
           <BorderPopover />
         </div>
       )}
+
+      {/* Exit confirmation dialog */}
+      <ConfirmDialog
+        isOpen={showExitDialog}
+        onConfirm={confirmExit}
+        onCancel={cancelExit}
+      />
     </div>
   );
 }
