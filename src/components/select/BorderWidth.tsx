@@ -1,30 +1,18 @@
-import React from "react";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import { SelectOption } from "../../types";
 
 const { electronAPI } = window;
 
-function BorderWidth() {
-  const borderWidths = [
-    {
-      value: "0",
-      label: "None",
-    },
-    {
-      value: "thin",
-      label: "Thin",
-    },
-    {
-      value: "medium",
-      label: "Medium",
-    },
-    {
-      value: "thick",
-      label: "Thick",
-    },
-  ];
+const borderWidths: SelectOption[] = [
+  { value: "0", label: "None" },
+  { value: "thin", label: "Thin" },
+  { value: "medium", label: "Medium" },
+  { value: "thick", label: "Thick" },
+];
 
-  const handleChange = (event) => {
+function BorderWidth(): JSX.Element {
+  const handleChange = (event: React.ChangeEvent<any>): void => {
     electronAPI.sendSync("shared-window-channel", {
       type: "set-border-width",
       payload: event.target.value,

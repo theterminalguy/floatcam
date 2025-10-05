@@ -1,9 +1,8 @@
-import React from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import VideoFilter from "./select/Filter";
 
-function EffectsSection() {
+function EffectsSection(): JSX.Element {
   return (
     <Container className="p-3">
       <Card>

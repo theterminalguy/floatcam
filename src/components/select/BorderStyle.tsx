@@ -1,46 +1,22 @@
-import React from "react";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import { SelectOption } from "../../types";
 
 const { electronAPI } = window;
 
-function BorderStyle() {
-  const borderStyles = [
-    {
-      value: "solid",
-      label: "Solid",
-    },
-    {
-      value: "dashed",
-      label: "Dashed",
-    },
-    {
-      value: "dotted",
-      label: "Dotted",
-    },
-    {
-      value: "double",
-      label: "Double",
-    },
-    {
-      value: "groove",
-      label: "Groove",
-    },
-    {
-      value: "ridge",
-      label: "Ridge",
-    },
-    {
-      value: "inset",
-      label: "Inset",
-    },
-    {
-      value: "outset",
-      label: "Outset",
-    },
-  ];
+const borderStyles: SelectOption[] = [
+  { value: "solid", label: "Solid" },
+  { value: "dashed", label: "Dashed" },
+  { value: "dotted", label: "Dotted" },
+  { value: "double", label: "Double" },
+  { value: "groove", label: "Groove" },
+  { value: "ridge", label: "Ridge" },
+  { value: "inset", label: "Inset" },
+  { value: "outset", label: "Outset" },
+];
 
-  const handleChange = (event) => {
+function BorderStyle(): JSX.Element {
+  const handleChange = (event: React.ChangeEvent<any>): void => {
     electronAPI.sendSync("shared-window-channel", {
       type: "set-border-style",
       payload: event.target.value,
