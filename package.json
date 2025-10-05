@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^14.5.1",
     "bootstrap": "^5.3.2",
     "electron-squirrel-startup": "^1.0.0",
+    "lucide-react": "^0.544.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.2",
     "react-dom": "^18.2.0",
