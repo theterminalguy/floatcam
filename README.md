@@ -1,5 +1,5 @@
 <p align="center">
-  <img  src="images/floatcam-circle.png" height="125px" alt="Floatcam logo"> <br/>
+  <img  src="images/floatcam-logo.svg" height="125px" alt="Floatcam logo"> <br/>
   <img  src="https://img.shields.io/badge/Version-0.1.0-blue.svg" alt="Version 1.0.0" />
   <img  src="https://img.shields.io/badge/Build-Passing-green.svg" alt="Build Passing" />
   <img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square" alt="License MIT" />

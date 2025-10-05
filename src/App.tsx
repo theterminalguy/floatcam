@@ -1,5 +1,5 @@
 import "./App.css";
-import logo from "./floatcam-circle.png";
+import logo from "./floatcam-logo.svg";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import CamSection from "./components/CamSection";
@@ -24,8 +24,8 @@ function App(): JSX.Element {
           <img
             src={logo}
             alt="FloatCam Logo"
-            height="65px"
-            width="65px"
+            height="80px"
+            width="80px"
           />
         </h1>
         <h1 className="header" style={{ textAlign: "center" }}>

@@ -1,0 +1,24 @@
+<svg width="32" height="32" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cameraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Camera body -->
+  <rect x="140" y="180" width="232" height="180" rx="24" fill="url(#cameraGradient)"/>
+
+  <!-- Lens -->
+  <circle cx="256" cy="270" r="70" fill="#ffffff" opacity="0.2"/>
+  <circle cx="256" cy="270" r="60" fill="#ffffff" opacity="0.3"/>
+  <circle cx="256" cy="270" r="45" fill="#1a1a2e"/>
+  <circle cx="240" cy="255" r="15" fill="#ffffff" opacity="0.6"/>
+
+  <!-- Flash -->
+  <circle cx="180" cy="210" r="12" fill="#f5576c" opacity="0.8"/>
+  <circle cx="180" cy="210" r="8" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Record button -->
+  <circle cx="330" cy="330" r="10" fill="#ff4757"/>
+</svg>
