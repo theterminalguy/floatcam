@@ -42,8 +42,8 @@ export default function BorderPopover() {
     <div className="popover">
       <div className="popover-title">Border</div>
 
-      <div style={{ padding: "8px 12px" }}>
-        <label style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "12px", marginBottom: "4px", display: "block" }}>
+      <div style={{ marginBottom: "16px" }}>
+        <label style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "12px", marginBottom: "6px", display: "block" }}>
           Width
         </label>
         <select
@@ -59,8 +59,8 @@ export default function BorderPopover() {
         </select>
       </div>
 
-      <div style={{ padding: "8px 12px" }}>
-        <label style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "12px", marginBottom: "4px", display: "block" }}>
+      <div style={{ marginBottom: "16px" }}>
+        <label style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "12px", marginBottom: "6px", display: "block" }}>
           Style
         </label>
         <select
@@ -76,8 +76,8 @@ export default function BorderPopover() {
         </select>
       </div>
 
-      <div className="color-picker-wrapper">
-        <label style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "12px", marginBottom: "4px", display: "block" }}>
+      <div>
+        <label style={{ color: "rgba(255, 255, 255, 0.7)", fontSize: "12px", marginBottom: "6px", display: "block" }}>
           Color
         </label>
         <input

@@ -20,9 +20,43 @@ type PopoverType = "camera" | "size" | "flip" | "shape" | "filter" | "border" | 
 
 export default function Sidebar() {
   const [activePopover, setActivePopover] = useState<PopoverType>(null);
+  const [popoverPosition, setPopoverPosition] = useState<number>(0);
 
-  const togglePopover = (popover: PopoverType) => {
-    setActivePopover(activePopover === popover ? null : popover);
+  const togglePopover = (popover: PopoverType, event: React.MouseEvent<HTMLButtonElement>) => {
+    if (activePopover === popover) {
+      setActivePopover(null);
+    } else {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const popoverMaxHeight = 500; // Max height from CSS
+      const paddingFromEdge = 20;
+
+      // Calculate if popover would overflow bottom of window
+      const spaceBelow = windowHeight - rect.top;
+      const spaceAbove = rect.bottom;
+
+      let calculatedTop: number;
+
+      if (spaceBelow >= popoverMaxHeight + paddingFromEdge) {
+        // Enough space below - align with button top
+        calculatedTop = rect.top;
+      } else if (spaceAbove >= popoverMaxHeight + paddingFromEdge) {
+        // Not enough space below but enough above - align to fit above
+        calculatedTop = Math.max(paddingFromEdge, rect.bottom - popoverMaxHeight);
+      } else {
+        // Limited space both ways - position to maximize visible area
+        calculatedTop = Math.max(
+          paddingFromEdge,
+          Math.min(
+            rect.top,
+            windowHeight - popoverMaxHeight - paddingFromEdge
+          )
+        );
+      }
+
+      setPopoverPosition(calculatedTop);
+      setActivePopover(popover);
+    }
   };
 
   const handleReset = () => {
@@ -40,36 +74,22 @@ export default function Sidebar() {
       <div style={{ position: "relative" }}>
         <button
           className={`sidebar-button ${activePopover === "camera" ? "active" : ""}`}
-          onClick={() => togglePopover("camera")}
+          onClick={(e) => togglePopover("camera", e)}
           title="Select Camera Source"
         >
           <Camera />
         </button>
-        {activePopover === "camera" && <CameraPopover />}
       </div>
 
       {/* Camera Size */}
       <div style={{ position: "relative" }}>
         <button
           className={`sidebar-button ${activePopover === "size" ? "active" : ""}`}
-          onClick={() => togglePopover("size")}
+          onClick={(e) => togglePopover("size", e)}
           title="Choose Camera Size"
         >
           <Maximize2 />
         </button>
-        {activePopover === "size" && <SizePopover />}
-      </div>
-
-      {/* Flip Camera */}
-      <div style={{ position: "relative" }}>
-        <button
-          className={`sidebar-button ${activePopover === "flip" ? "active" : ""}`}
-          onClick={() => togglePopover("flip")}
-          title="Flip Camera"
-        >
-          <RefreshCw />
-        </button>
-        {activePopover === "flip" && <FlipPopover />}
       </div>
 
       <div className="sidebar-divider" />
@@ -78,7 +98,7 @@ export default function Sidebar() {
       <div style={{ position: "relative" }}>
         <button
           className={`sidebar-button ${activePopover === "shape" ? "active" : ""}`}
-          onClick={() => togglePopover("shape")}
+          onClick={(e) => togglePopover("shape", e)}
           title="Select Camera Shape"
         >
           <div style={{ display: "flex", gap: "2px" }}>
@@ -89,34 +109,44 @@ export default function Sidebar() {
             </div>
           </div>
         </button>
-        {activePopover === "shape" && <ShapePopover />}
+      </div>
+
+      {/* Border */}
+      <div style={{ position: "relative" }}>
+        <button
+          className={`sidebar-button ${activePopover === "border" ? "active" : ""}`}
+          onClick={(e) => togglePopover("border", e)}
+          title="Border"
+        >
+          <Square style={{ strokeDasharray: "4 4" }} />
+        </button>
       </div>
 
       {/* Filter */}
       <div style={{ position: "relative" }}>
         <button
           className={`sidebar-button ${activePopover === "filter" ? "active" : ""}`}
-          onClick={() => togglePopover("filter")}
+          onClick={(e) => togglePopover("filter", e)}
           title="Filter"
         >
           <Droplet />
         </button>
-        {activePopover === "filter" && <FilterPopover />}
       </div>
 
       <div className="sidebar-divider" />
 
-      {/* Border */}
+      {/* Flip Camera */}
       <div style={{ position: "relative" }}>
         <button
-          className={`sidebar-button ${activePopover === "border" ? "active" : ""}`}
-          onClick={() => togglePopover("border")}
-          title="Border"
+          className={`sidebar-button ${activePopover === "flip" ? "active" : ""}`}
+          onClick={(e) => togglePopover("flip", e)}
+          title="Flip Camera"
         >
-          <Square style={{ strokeDasharray: "4 4" }} />
+          <RefreshCw />
         </button>
-        {activePopover === "border" && <BorderPopover />}
       </div>
+
+      <div className="sidebar-divider" />
 
       {/* Reset Changes */}
       <button
@@ -135,6 +165,38 @@ export default function Sidebar() {
       >
         <X />
       </button>
+
+      {/* Render active popover with calculated position */}
+      {activePopover === "camera" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <CameraPopover />
+        </div>
+      )}
+      {activePopover === "size" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <SizePopover />
+        </div>
+      )}
+      {activePopover === "flip" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <FlipPopover />
+        </div>
+      )}
+      {activePopover === "shape" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <ShapePopover />
+        </div>
+      )}
+      {activePopover === "filter" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <FilterPopover />
+        </div>
+      )}
+      {activePopover === "border" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <BorderPopover />
+        </div>
+      )}
     </div>
   );
 }

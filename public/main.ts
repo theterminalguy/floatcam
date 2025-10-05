@@ -12,8 +12,8 @@ interface WindowMessage {
 
 function createMainWindow(): BrowserWindow {
   const win = new BrowserWindow({
-    width: 450,
-    height: 550,
+    width: 800,
+    height: 700,
     maximizable: false,
     resizable: false,
     transparent: true,
