@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import {
   Camera,
   Maximize2,
@@ -21,14 +21,40 @@ type PopoverType = "camera" | "size" | "flip" | "shape" | "filter" | "border" | 
 export default function Sidebar() {
   const [activePopover, setActivePopover] = useState<PopoverType>(null);
   const [popoverPosition, setPopoverPosition] = useState<number>(0);
-  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
   const togglePopover = (popover: PopoverType, event: React.MouseEvent<HTMLButtonElement>) => {
     if (activePopover === popover) {
       setActivePopover(null);
     } else {
       const rect = event.currentTarget.getBoundingClientRect();
-      setPopoverPosition(rect.top);
+      const windowHeight = window.innerHeight;
+      const popoverMaxHeight = 500; // Max height from CSS
+      const paddingFromEdge = 20;
+
+      // Calculate if popover would overflow bottom of window
+      const spaceBelow = windowHeight - rect.top;
+      const spaceAbove = rect.bottom;
+
+      let calculatedTop: number;
+
+      if (spaceBelow >= popoverMaxHeight + paddingFromEdge) {
+        // Enough space below - align with button top
+        calculatedTop = rect.top;
+      } else if (spaceAbove >= popoverMaxHeight + paddingFromEdge) {
+        // Not enough space below but enough above - align to fit above
+        calculatedTop = Math.max(paddingFromEdge, rect.bottom - popoverMaxHeight);
+      } else {
+        // Limited space both ways - position to maximize visible area
+        calculatedTop = Math.max(
+          paddingFromEdge,
+          Math.min(
+            rect.top,
+            windowHeight - popoverMaxHeight - paddingFromEdge
+          )
+        );
+      }
+
+      setPopoverPosition(calculatedTop);
       setActivePopover(popover);
     }
   };
@@ -66,17 +92,6 @@ export default function Sidebar() {
         </button>
       </div>
 
-      {/* Flip Camera */}
-      <div style={{ position: "relative" }}>
-        <button
-          className={`sidebar-button ${activePopover === "flip" ? "active" : ""}`}
-          onClick={(e) => togglePopover("flip", e)}
-          title="Flip Camera"
-        >
-          <RefreshCw />
-        </button>
-      </div>
-
       <div className="sidebar-divider" />
 
       {/* Camera Shape */}
@@ -96,6 +111,17 @@ export default function Sidebar() {
         </button>
       </div>
 
+      {/* Border */}
+      <div style={{ position: "relative" }}>
+        <button
+          className={`sidebar-button ${activePopover === "border" ? "active" : ""}`}
+          onClick={(e) => togglePopover("border", e)}
+          title="Border"
+        >
+          <Square style={{ strokeDasharray: "4 4" }} />
+        </button>
+      </div>
+
       {/* Filter */}
       <div style={{ position: "relative" }}>
         <button
@@ -109,16 +135,18 @@ export default function Sidebar() {
 
       <div className="sidebar-divider" />
 
-      {/* Border */}
+      {/* Flip Camera */}
       <div style={{ position: "relative" }}>
         <button
-          className={`sidebar-button ${activePopover === "border" ? "active" : ""}`}
-          onClick={(e) => togglePopover("border", e)}
-          title="Border"
+          className={`sidebar-button ${activePopover === "flip" ? "active" : ""}`}
+          onClick={(e) => togglePopover("flip", e)}
+          title="Flip Camera"
         >
-          <Square style={{ strokeDasharray: "4 4" }} />
+          <RefreshCw />
         </button>
       </div>
+
+      <div className="sidebar-divider" />
 
       {/* Reset Changes */}
       <button
