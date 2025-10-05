@@ -88,12 +88,29 @@ app.whenReady().then(async () => {
   camWindow.setAlwaysOnTop(true, "floating", 1);
 
   ipcMain.on("shared-window-channel", (event, arg: WindowMessage) => {
+    // Handle exit app request
+    if (arg.type === "exit-app") {
+      app.quit();
+      event.returnValue = true;
+      return;
+    }
+
+    // Forward request-webcams to camera window
+    if (arg.type === "request-webcams") {
+      camWindow.webContents.send("shared-window-channel", arg);
+      event.returnValue = true;
+      return;
+    }
+
+    // Forward all messages to camera window
     camWindow.webContents.send("shared-window-channel", arg);
 
+    // Forward set-webcams to main window
     if (arg.type === "set-webcams") {
       mainWindow.webContents.send("shared-window-channel", arg);
     }
 
+    // Handle camera resolution changes
     if (arg.type === "set-camera-resolution" && arg.payload) {
       let { width, height } = arg.payload;
       if (width && height) {
