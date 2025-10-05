@@ -2,27 +2,33 @@ import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Alert from "react-bootstrap/Alert";
+import { WebcamDevice } from "../types";
 
 const { electronAPI } = window;
 
-const Camera = () => {
-  const [errorOccurred, setErrorOccurred] = useState(false);
+interface WindowMessage {
+  type: string;
+  payload: string;
+}
 
-  const [webcams, setWebcams] = React.useState([
+const Camera: React.FC = () => {
+  const [errorOccurred, setErrorOccurred] = useState<boolean>(false);
+  const [webcams, setWebcams] = useState<WebcamDevice[]>([
     { deviceId: "loading", label: "Loading..." },
   ]);
 
   useEffect(() => {
     electronAPI.onMessageReceived("shared-window-channel", (_, message) => {
-      if (message.type === "set-webcams") {
-        setWebcams(JSON.parse(message.payload));
+      const msg = message as WindowMessage;
+      if (msg.type === "set-webcams") {
+        setWebcams(JSON.parse(msg.payload) as WebcamDevice[]);
       }
     });
   }, []);
 
-  const handleChange = (event) => {
-    const videoSource = event.target.value;
-    const constraints = {
+  const handleChange = (event: React.ChangeEvent<any>): void => {
+    const videoSource = (event.target as HTMLSelectElement).value;
+    const constraints: MediaStreamConstraints = {
       video: {
         deviceId: {
           exact: videoSource,

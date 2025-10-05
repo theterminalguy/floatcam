@@ -1,4 +1,3 @@
-import React from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
@@ -7,8 +6,8 @@ import SelectBorderStyle from "./select/BorderStyle";
 
 const { electronAPI } = window;
 
-function BorderSection() {
-  const handleColorChange = (event) => {
+function BorderSection(): JSX.Element {
+  const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     electronAPI.sendSync("shared-window-channel", {
       type: "set-border-color",
       payload: event.target.value,
@@ -22,7 +21,6 @@ function BorderSection() {
           <Card.Title>Border</Card.Title>
           <SelectBorderWidth />
           <SelectBorderStyle />
-
           <Card.Text as="div">
             <Form.Group>
               <Form.Label>Color</Form.Label>

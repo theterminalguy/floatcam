@@ -1,8 +1,13 @@
-import React from "react";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import { SelectOption } from "../../types";
 
-function Resolution({ resolutions, onChange }) {
+interface ResolutionProps {
+  resolutions: SelectOption[];
+  onChange: (event: React.ChangeEvent<any>) => void;
+}
+
+function Resolution({ resolutions, onChange }: ResolutionProps): JSX.Element {
   return (
     <Card.Text as="div">
       <Form.Group controlId="formVideoResolution">

@@ -1,6 +1,9 @@
-import React from "react";
 
-function VideoPreview({ videoRef }) {
+interface VideoPreviewProps {
+  videoRef: React.RefObject<HTMLVideoElement>;
+}
+
+function VideoPreview({ videoRef }: VideoPreviewProps): JSX.Element {
   return (
     <div id="preview">
       <div id="preview-header">Click here to move</div>

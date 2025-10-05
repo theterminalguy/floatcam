@@ -1,8 +1,14 @@
-import React from "react";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import { SelectOption } from "../../types";
 
-function Shape({ shapes, onChange }) {
+interface ShapeProps {
+  shapes: SelectOption[];
+  defaultShape?: string;
+  onChange: (event: React.ChangeEvent<any>) => void;
+}
+
+function Shape({ shapes, onChange }: ShapeProps): JSX.Element {
   return (
     <Card.Text as="div">
       <Form.Group controlId="formVideoShape">
