@@ -38,8 +38,7 @@ body {
 }
 
 .sidebar {
-  background: rgba(45, 55, 72, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgb(45, 55, 72);
   border-radius: 24px;
   padding: 16px 12px;
   display: flex;
@@ -48,6 +47,8 @@ body {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 1000;
+  -webkit-app-region: drag;
+  cursor: move;
 }
 
 .sidebar-button {
@@ -63,6 +64,7 @@ body {
   justify-content: center;
   transition: all 0.2s ease;
   position: relative;
+  -webkit-app-region: no-drag;
 }
 
 .sidebar-button:hover {
@@ -89,14 +91,14 @@ body {
 .popover {
   position: absolute;
   left: 72px;
-  background: rgba(45, 55, 72, 0.98);
-  backdrop-filter: blur(20px);
+  background: rgb(45, 55, 72);
   border-radius: 16px;
   padding: 12px;
   min-width: 240px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
   z-index: 10000;
   animation: slideIn 0.2s ease;
+  -webkit-app-region: no-drag;
 }
 
 @keyframes slideIn {

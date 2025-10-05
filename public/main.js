@@ -7,7 +7,7 @@ const path_1 = __importDefault(require("path"));
 const electron_1 = require("electron");
 function createMainWindow() {
     const win = new electron_1.BrowserWindow({
-        width: 600,
+        width: 120,
         height: 800,
         maximizable: false,
         resizable: false,
