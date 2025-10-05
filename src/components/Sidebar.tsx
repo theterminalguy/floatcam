@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Camera,
   Maximize2,
@@ -20,9 +20,17 @@ type PopoverType = "camera" | "size" | "flip" | "shape" | "filter" | "border" | 
 
 export default function Sidebar() {
   const [activePopover, setActivePopover] = useState<PopoverType>(null);
+  const [popoverPosition, setPopoverPosition] = useState<number>(0);
+  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
-  const togglePopover = (popover: PopoverType) => {
-    setActivePopover(activePopover === popover ? null : popover);
+  const togglePopover = (popover: PopoverType, event: React.MouseEvent<HTMLButtonElement>) => {
+    if (activePopover === popover) {
+      setActivePopover(null);
+    } else {
+      const rect = event.currentTarget.getBoundingClientRect();
+      setPopoverPosition(rect.top);
+      setActivePopover(popover);
+    }
   };
 
   const handleReset = () => {
@@ -40,36 +48,33 @@ export default function Sidebar() {
       <div style={{ position: "relative" }}>
         <button
           className={`sidebar-button ${activePopover === "camera" ? "active" : ""}`}
-          onClick={() => togglePopover("camera")}
+          onClick={(e) => togglePopover("camera", e)}
           title="Select Camera Source"
         >
           <Camera />
         </button>
-        {activePopover === "camera" && <CameraPopover />}
       </div>
 
       {/* Camera Size */}
       <div style={{ position: "relative" }}>
         <button
           className={`sidebar-button ${activePopover === "size" ? "active" : ""}`}
-          onClick={() => togglePopover("size")}
+          onClick={(e) => togglePopover("size", e)}
           title="Choose Camera Size"
         >
           <Maximize2 />
         </button>
-        {activePopover === "size" && <SizePopover />}
       </div>
 
       {/* Flip Camera */}
       <div style={{ position: "relative" }}>
         <button
           className={`sidebar-button ${activePopover === "flip" ? "active" : ""}`}
-          onClick={() => togglePopover("flip")}
+          onClick={(e) => togglePopover("flip", e)}
           title="Flip Camera"
         >
           <RefreshCw />
         </button>
-        {activePopover === "flip" && <FlipPopover />}
       </div>
 
       <div className="sidebar-divider" />
@@ -78,7 +83,7 @@ export default function Sidebar() {
       <div style={{ position: "relative" }}>
         <button
           className={`sidebar-button ${activePopover === "shape" ? "active" : ""}`}
-          onClick={() => togglePopover("shape")}
+          onClick={(e) => togglePopover("shape", e)}
           title="Select Camera Shape"
         >
           <div style={{ display: "flex", gap: "2px" }}>
@@ -89,19 +94,17 @@ export default function Sidebar() {
             </div>
           </div>
         </button>
-        {activePopover === "shape" && <ShapePopover />}
       </div>
 
       {/* Filter */}
       <div style={{ position: "relative" }}>
         <button
           className={`sidebar-button ${activePopover === "filter" ? "active" : ""}`}
-          onClick={() => togglePopover("filter")}
+          onClick={(e) => togglePopover("filter", e)}
           title="Filter"
         >
           <Droplet />
         </button>
-        {activePopover === "filter" && <FilterPopover />}
       </div>
 
       <div className="sidebar-divider" />
@@ -110,12 +113,11 @@ export default function Sidebar() {
       <div style={{ position: "relative" }}>
         <button
           className={`sidebar-button ${activePopover === "border" ? "active" : ""}`}
-          onClick={() => togglePopover("border")}
+          onClick={(e) => togglePopover("border", e)}
           title="Border"
         >
           <Square style={{ strokeDasharray: "4 4" }} />
         </button>
-        {activePopover === "border" && <BorderPopover />}
       </div>
 
       {/* Reset Changes */}
@@ -135,6 +137,38 @@ export default function Sidebar() {
       >
         <X />
       </button>
+
+      {/* Render active popover with calculated position */}
+      {activePopover === "camera" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <CameraPopover />
+        </div>
+      )}
+      {activePopover === "size" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <SizePopover />
+        </div>
+      )}
+      {activePopover === "flip" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <FlipPopover />
+        </div>
+      )}
+      {activePopover === "shape" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <ShapePopover />
+        </div>
+      )}
+      {activePopover === "filter" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <FilterPopover />
+        </div>
+      )}
+      {activePopover === "border" && (
+        <div style={{ position: "fixed", top: `${popoverPosition}px`, left: "100px" }}>
+          <BorderPopover />
+        </div>
+      )}
     </div>
   );
 }
