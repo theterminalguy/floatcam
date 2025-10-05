@@ -31,10 +31,11 @@ body {
   height: 100vh;
   background: transparent;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  padding: 20px;
+  padding: 0;
+  overflow: hidden;
 }
 
 .sidebar {

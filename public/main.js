@@ -8,14 +8,15 @@ const electron_1 = require("electron");
 function createMainWindow() {
     const win = new electron_1.BrowserWindow({
         width: 120,
-        height: 800,
+        height: 550,
         maximizable: false,
         resizable: false,
         transparent: true,
         frame: false,
-        titleBarStyle: "hidden",
+        titleBarStyle: "customButtonsOnHover",
         hasShadow: false,
         autoHideMenuBar: true,
+        fullscreenable: false,
         webPreferences: {
             preload: path_1.default.join(__dirname, "preload.js"),
             nodeIntegration: true,
@@ -37,12 +38,13 @@ function createCameraWindow() {
         maxWidth: 500,
         maxHeight: 500,
         resizable: false,
-        titleBarStyle: "hidden",
+        titleBarStyle: "customButtonsOnHover",
         transparent: true,
         darkTheme: false,
         hasShadow: false,
         frame: false,
         alwaysOnTop: true,
+        fullscreenable: false,
         webPreferences: {
             preload: path_1.default.join(__dirname, "preload.js"),
             contextIsolation: true,
