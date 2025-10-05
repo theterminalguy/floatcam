@@ -36,8 +36,8 @@ function createMainWindow(): BrowserWindow {
 
 function createCameraWindow(): BrowserWindow {
   const win = new BrowserWindow({
-    width: 120,
-    height: 120,
+    width: 125,
+    height: 125,
     maxWidth: 500,
     maxHeight: 500,
     resizable: false,
@@ -58,27 +58,33 @@ function createCameraWindow(): BrowserWindow {
 }
 
 app.whenReady().then(async () => {
-  const camAllowed = await systemPreferences
-    .askForMediaAccess("camera")
-    .then(async (access: boolean) => {
-      if (!access) {
-        new Notification({
-          title: "Camera Access",
-          body: "Camera access is required to use this app",
-        }).show();
-        return false;
-      }
-      return true;
-    });
+  const access = systemPreferences.getMediaAccessStatus("camera");
+  if (access !== "granted") {
+    const camAllowed = await systemPreferences
+      .askForMediaAccess("camera")
+      .then(async (access: boolean) => {
+        if (!access) {
+          new Notification({
+            title: "Camera Access",
+            body: "Camera access is required to use this app",
+          }).show();
+          return false;
+        }
+        return true;
+      });
 
-  if (!camAllowed) {
-    app.quit();
-    return;
+    if (!camAllowed) {
+      app.quit();
+      return;
+    }
   }
 
   const mainWindow = createMainWindow();
   const camWindow = createCameraWindow();
   camWindow.setAlwaysOnTop(true, "floating", 1);
+
+  let borderSize = 0;
+  let lastSizeWith: [number, number] = [125, 125];
 
   ipcMain.on("shared-window-channel", (event, arg: WindowMessage) => {
     camWindow.webContents.send("shared-window-channel", arg);
@@ -90,11 +96,38 @@ app.whenReady().then(async () => {
     if (arg.type === "set-camera-resolution" && arg.payload) {
       let { width, height } = arg.payload;
       if (width && height) {
-        // adding 20 just to make sure the window is not too small to fit the camera
-        const widthNum = Number(width.replace("px", "")) + 20;
-        const heightNum = Number(height.replace("px", "")) + 20;
+        // adding 25 just to make sure the window is not too small to fit the camera
+        const widthNum = Number(width.replace("px", "")) + 25;
+        const heightNum = Number(height.replace("px", "")) + 25;
+        lastSizeWith = [widthNum, heightNum];
         camWindow.setSize(widthNum, heightNum);
       }
+    } else if (arg.type === "set-border-width") {
+      const borderWidth = typeof arg.payload === "string" ? arg.payload : String(arg.payload);
+      switch (borderWidth) {
+        case "0": {
+          borderSize = 0;
+          break;
+        }
+        case "thin": {
+          borderSize = 3;
+          break;
+        }
+        case "medium": {
+          borderSize = 5;
+          break;
+        }
+        case "thick": {
+          borderSize = 20;
+          break;
+        }
+      }
+
+      // Resize window with count borders
+      camWindow.setSize(
+        lastSizeWith[0] + borderSize,
+        lastSizeWith[1] + borderSize
+      );
     }
 
     event.returnValue = true;
