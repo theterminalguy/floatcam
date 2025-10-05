@@ -91,11 +91,11 @@ body {
 
 .popover {
   position: absolute;
-  left: 72px;
+  left: 80px;
   background: rgb(45, 55, 72);
   border-radius: 16px;
-  padding: 12px;
-  min-width: 240px;
+  padding: 16px;
+  width: 330px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
   z-index: 10000;
   animation: slideIn 0.2s ease;
