@@ -12,7 +12,7 @@ interface WindowMessage {
 
 function createMainWindow(): BrowserWindow {
   const win = new BrowserWindow({
-    width: 120,
+    width: 400,
     height: 550,
     maximizable: false,
     resizable: false,
